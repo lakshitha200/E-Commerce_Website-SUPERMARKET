@@ -1,0 +1,47 @@
+<div class="container-fluid" style="  background-color: #dbdbdb;">
+
+
+    <div class="categories">
+         <div class="cl d-flex gap-2">
+            <button class="c-button" role="button" data-bs-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+              <span class="c-large">All Categories </span>
+              <i class="fa-solid fa-list c-small"></i>
+            </button>
+            <div class="category-items">
+                <a [routerLink]="'all-products/vegetables'" [routerLinkActive]="'active'">Vegetables</a>
+                <a [routerLink]="'all-products/fruits'" [routerLinkActive]="'active'">Fruits</a>
+                <a [routerLink]="'all-products/meat'" [routerLinkActive]="'active'">Meat</a>
+                <a [routerLink]="'all-products/fish'" [routerLinkActive]="'active'">Fish</a>
+                <a [routerLink]="'all-products/beverages'" [routerLinkActive]="'active'">Beverages</a>
+            </div>
+            
+         </div>
+         <div class="cr">
+            <app-search></app-search>
+         </div>
+         
+      </div>
+      <div>
+        <div class="menu1 collapse"  id="collapseExample">
+            <div [routerLink]="'all-products/vegetables'" [routerLinkActive]="'active'"><a >
+              <img src="https://cdn-icons-png.flaticon.com/128/10632/10632405.png"> Vegetables</a>
+            </div>
+            <div [routerLink]="'all-products/fruits'" [routerLinkActive]="'active'"><a > 
+              <img src="https://cdn-icons-png.flaticon.com/128/2892/2892319.png"> Fruits</a>
+            </div>
+            <div [routerLink]="'all-products/meat'" [routerLinkActive]="'active'"><a>
+              <img src="https://cdn-icons-png.flaticon.com/128/1046/1046820.png"> Meat</a>
+            </div>
+            <div [routerLink]="'all-products/fish'" [routerLinkActive]="'active'"><a >
+              <img src=" https://cdn-icons-png.flaticon.com/128/3005/3005150.png">  Fish</a>
+            </div> 
+            <div [routerLink]="'all-products/beverages'" [routerLinkActive]="'active'"><a>
+              <img src="https://cdn-icons-png.flaticon.com/128/1685/1685043.png">  Beverages</a>
+            </div>
+            <div  [routerLink]="'all-products/homeware'" [routerLinkActive]="'active'"><a>
+              <img src="https://cdn-icons-png.flaticon.com/128/5515/5515623.png">  Homeware</a>
+            </div>
+        </div>
+      </div>
+
+    </div>

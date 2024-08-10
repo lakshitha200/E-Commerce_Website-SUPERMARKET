@@ -1,0 +1,40 @@
+
+<div class="mycontainer my-3">
+    <h4>ALL Products</h4>
+
+    <div class="product-list mt-3">
+        <div class="products" >
+            <ng-container *ngFor="let product of products">
+                <div class="card">
+                    <div class="quantity position-absolute px-3 py-1" style="background-color: #fbff00; font-weight: 500;">{{product.quantity}}</div>
+                    <button [disabled]="idList.includes(product.id)"
+                    class="btn cart position-absolute end-0 px-3 py-1 text-white" style="background-color: #025002;" (click)="addToCart(product.id)">
+                        <i class="fa-solid fa-cart-shopping" [ngStyle]="{color: idList.includes(product.id)?'#fbff00':'#fff'}"></i>
+                    </button>
+                    <a [routerLink]="'product-details/'+product.name+'/'+product.id">
+                        <img src="{{product.image}}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title" style="color: #025002;">{{product.name}}</h5>
+                    
+                            <p class="price">Rs. {{product.price}}</p>
+                        </div>
+                    </a>
+                </div>
+            </ng-container>
+            
+        </div>
+    </div>
+</div>
+
+<ng-container *ngIf="notificationToggel">
+    <div [ngClass]="{'open-notification':notificationToggel,'alert':true,
+    'alert-success':notification.colour=='alert-success', 
+    'alert-dismissible':true}" role="alert" >
+        <strong>{{ notification.message }}</strong>
+        <button type="button" class="btn-close"
+        (click)="closeNotification()"></button>
+        <div class="bar" [ngStyle]="{'background-color': notification.colour=='alert-success'?'green':'red'}"></div>
+    </div>
+</ng-container>
+
+

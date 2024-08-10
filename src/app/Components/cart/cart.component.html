@@ -1,0 +1,120 @@
+<h4 class="my-3 d-flex align-items-center justify-content-center gap-2">My Shopping Cart <i class="fa-solid fa-cart-shopping mt-1"></i></h4>
+<div class="mycontainer">
+    <div class="row">
+        <aside class="col-lg-9">
+            <div class="card">
+                <div class="">
+                    <table class="table table-borderless table-shopping-cart">
+                        <thead class="text-muted">
+                            <tr class="small text-uppercase">
+                                <th scope="col">Product</th>
+                                <th scope="col" width="120">Quantity</th>
+                                <th scope="col" width="120">Price</th>
+                                <th scope="col" class="text-right d-none d-md-block" width="200"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ng-container *ngFor="let item of cartItems">
+                                <tr>
+                                    <td>
+                                        <figure class="itemside align-items-center">
+                                            <div class="aside"><img src="{{item.image}}" class="img-sm"></div>
+                                            <figcaption class="info"> <a href="#" class="title text-dark" data-abc="true">{{item.name}}</a>
+                                                <p class="text-muted small" style="text-transform: capitalize;">{{item.category}} <br> 
+                                                    <span style="font-weight: 500;">{{item.quantity}} - <span style="color: #FF512F;">Rs. {{item.price | number : '1.2-2'}}</span></span></p>
+                                            </figcaption>
+                                        </figure>
+                                    </td>
+                                    <td class="d-flex quantity"> 
+                                        <!-- <div class="form-group">
+                                            <input type="number" name="newquantity" placeholder="0">
+                                        </div>
+                                        <select name="mas">
+                                            <option value="Kg">Kg</option>
+                                            <option value="g">g</option>
+                                        </select> -->
+
+                                        <ng-container  *ngFor="let quantityNumber of quantityNumbers">
+                                            <ng-container *ngIf="quantityNumber.id == item.id">
+                                            <div class="quantity-buttons">
+                                                
+                                                <button class="fa-solid fa-square-minus" (click)="remove(item.id)"  [disabled]="quantityNumber.q == 1"></button>
+                                                
+                                                    <span class="mx-2">{{quantityNumber.q}}</span>
+                                                
+                                                <button class="fa-solid fa-square-plus" (click)="add(item.id)"  [disabled]="quantityNumber.q == 200"></button>
+                                      
+                                            </div>
+
+                                        </ng-container>
+                                    </ng-container>
+                                        
+                                        
+                                    <td>
+                                        <ng-container  *ngFor="let quantityNumber of quantityNumbers">
+                                            <ng-container *ngIf="quantityNumber.id == item.id">
+                                                <div class="price-wrap"> <var class="price">Rs.{{item.price*quantityNumber.q  | number : '1.2-2'}}</var>
+                                                    <!-- <small class="text-muted"> $9.20 each </small> -->
+                                                </div>
+                                            </ng-container>
+                                        </ng-container>
+                                    </td>
+                                    <td class="text-right d-md-block"> 
+                                        <ng-container *ngFor="let quantityNumber of quantityNumbers">
+                                            <button *ngIf="quantityNumber.id == item.id" type="button" class="btn btn-list"  (click)="listed(item.id)"
+                                            [ngClass]="{'btn-checked':quantityNumber.inList}" >
+                                                <i class="fa-solid fa-check"></i>
+                                            </button>  
+                                        </ng-container>
+                                                                         
+                                        <button type="button" class="btn btn-light" data-abc="true" (click)="removeCart(item.id)"> Remove</button> </td>
+                                </tr>
+    
+                            </ng-container>
+                          
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </aside>
+        <aside class="col-lg-3">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <form>
+                        <div class="form-group"> 
+                            <label>Have coupon?</label>
+                            <div class="input-group d-flex align-items-center mt-1"> 
+                                <input type="text" class="form-control coupon" name="coupon" placeholder="Coupon code"> 
+                                <button class="btn btn-primary btn-apply  coupon">Enter</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <dl class="dlist-align">
+                        <dt>Number of Items:</dt>
+                        <dd class="text-right ml-3">&nbsp; {{fullOrderDetails.itemCount}}</dd>
+                    </dl>
+                    <dl class="dlist-align">
+                        <dt>Total price:</dt>
+                        <dd class="text-right ml-3">&nbsp; Rs. {{fullOrderDetails.totalPrice | number : '1.2-2'}}</dd>
+                    </dl>
+                    <dl class="dlist-align">
+                        <dt>Discount:</dt>
+                        <dd class="text-right text-danger ml-3">&nbsp; {{fullOrderDetails.discount}}%</dd>
+                    </dl>
+                    <dl class="dlist-align">
+                        <dt>Discounted Price:</dt>
+                        <dd class="text-right text-danger b ml-3"><strong>&nbsp; Rs. {{fullOrderDetails.discountedPrice | number : '1.2-2'}}</strong></dd>
+                    </dl>
+
+                    <hr> 
+                    <a href="#" class="btn btn-out btn-purchase  btn-main" data-abc="true"> Make Purchase </a> 
+                    <a href="#" class="btn btn-out btn-shopping  btn-main mt-2" data-abc="true">Continue Shopping</a>
+                </div>
+            </div>
+        </aside>
+    </div>
+</div>

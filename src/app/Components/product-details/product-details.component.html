@@ -1,0 +1,46 @@
+
+<div class="mycontainer">
+    <div class="product-details">
+
+        <div class="product-image">
+            <img src="{{product.image}}" alt="">
+        </div>
+        <div class="details">
+            <h4>{{product.name}} - {{product.quantity}}</h4>
+            <p>{{product.name}}</p>
+            <p class="text-center" style="background-color: #fbff00; font-weight: 500;">{{product.quantity}}</p>
+            <h5 style="color: #FF512F;">Rs. {{product.price | number : '1.2-2'}}</h5>
+
+            <div class="buy-cart mt-3">
+                <button class="buy" role="button"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Buy Now</button>
+
+                <button [ngClass]="{'cart':idList.includes(product.id)==false,'disabled':idList.includes(product.id)}" role="button" 
+                (click)="addToCart(product.id)" [disabled]="idList.includes(product.id)">Add to Cart <i class="fa-solid fa-cart-shopping"></i></button>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasRightLabel">Buy Payment</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    ...
+  </div>
+</div>
+
+<ng-container *ngIf="notificationToggel">
+  <div [ngClass]="{'open-notification':notificationToggel,'alert':true,
+  'alert-success':notification.colour=='alert-success', 
+  'alert-dismissible':true}" role="alert" >
+      <strong class="px-3">{{ notification.message }}</strong>
+      <button type="button" class="btn-close"
+      (click)="closeNotification()"></button>
+      <div class="bar" [ngStyle]="{'background-color': notification.colour=='alert-success'?'green':'red'}"></div>
+  </div>
+</ng-container>

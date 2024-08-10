@@ -1,0 +1,36 @@
+
+.search{
+    border: 1px solid #8d8d8d;
+    border-radius: 50px;
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+}
+
+.search input{
+    border: none;
+    outline: none;
+    box-shadow: none;
+    width: 250px;
+}
+i{
+
+    padding: 10px;
+    border-radius: 50%;
+    color: #000000;
+    transition: .2s;
+}
+i:hover{
+    color: #fff;
+    background-color: #025002;
+}
+
+@media screen and (max-width:767px) {
+    .search{
+        width: 100%;
+    }
+    .search input{
+        width: 100%;
+    }
+}
