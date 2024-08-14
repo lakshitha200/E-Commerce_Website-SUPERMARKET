@@ -139,3 +139,7 @@ app-search{
     color: #fff;
     background-image: linear-gradient(to Right,#FF512F ,#F09819);
   }
+
+  .test{
+    height: 0 !important;
+  }
