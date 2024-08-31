@@ -79,6 +79,9 @@ li a:hover{
     display: none;
 }
 
+.dropdown-menu{
+    margin-left: 75%;
+}
 @media screen and (max-width:991px) {
     .navButtons1{
         display: none;
@@ -102,6 +105,10 @@ li a:hover{
     .navButtons2{
         margin-top: 10px;
     }
+    .dropdown-menu{
+        position: absolute;
+        margin-left: 50%;
+    }
 }
 
 @media screen and (max-width:575px) {
@@ -117,6 +124,9 @@ li a:hover{
     .navbar{
         background-color: #fff !important;
         padding: 0 15px !important;
+    }
+    .dropdown-menu{
+        margin-left: 50%;
     }
 }
 

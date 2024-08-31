@@ -2,55 +2,43 @@
 <div class="mycontainer">
     <div class="row">
         <aside class="col-lg-9">
-            <div class="card">
-                <div class="">
-                    <table class="table table-borderless table-shopping-cart">
-                        <thead class="text-muted">
-                            <tr class="small text-uppercase">
-                                <th scope="col">Product</th>
-                                <th scope="col" width="120">Quantity</th>
-                                <th scope="col" width="120">Price</th>
-                                <th scope="col" class="text-right d-none d-md-block" width="200"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <ng-container *ngFor="let item of cartItems">
-                                <tr>
-                                    <td>
-                                        <figure class="itemside align-items-center">
-                                            <div class="aside"><img src="{{item.image}}" class="img-sm"></div>
-                                            <figcaption class="info"> <a href="#" class="title text-dark" data-abc="true">{{item.name}}</a>
-                                                <p class="text-muted small" style="text-transform: capitalize;">{{item.category}} <br> 
-                                                    <span style="font-weight: 500;">{{item.quantity}} - <span style="color: #FF512F;">Rs. {{item.price | number : '1.2-2'}}</span></span></p>
-                                            </figcaption>
-                                        </figure>
-                                    </td>
-                                    <td class="d-flex quantity"> 
-                                        <!-- <div class="form-group">
-                                            <input type="number" name="newquantity" placeholder="0">
-                                        </div>
-                                        <select name="mas">
-                                            <option value="Kg">Kg</option>
-                                            <option value="g">g</option>
-                                        </select> -->
-
+           
+            <div class="">
+                <table class="table  table-shopping-cart">
+                    <thead class="text-muted">
+                        <tr class="small text-uppercase">
+                            <th scope="col">Product</th>
+                            <th scope="col">Quantity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <ng-container *ngFor="let item of cartItems">
+                            <tr>
+                                <td class="img-box">
+                                    <figure class="itemside align-items-center">
+                                        <div class="aside"><img src="{{item.image}}" class="img-sm"></div>
+                                        <figcaption class="info"> <a href="#" class="title text-dark" data-abc="true">{{item.name}}</a>
+                                            <p class="text-muted small" style="text-transform: capitalize;">{{item.category}} <br> 
+                                                <span style="font-weight: 500;">{{item.quantity}} - <span style="color: #FF512F;">Rs. {{item.price | number : '1.2-2'}}</span></span></p>
+                                        </figcaption>
+                                    </figure>
+                                </td>
+                                <td class="product-details">
+                                    <div class="d-flex quantity"> 
                                         <ng-container  *ngFor="let quantityNumber of quantityNumbers">
                                             <ng-container *ngIf="quantityNumber.id == item.id">
-                                            <div class="quantity-buttons">
-                                                
-                                                <button class="fa-solid fa-square-minus" (click)="remove(item.id)"  [disabled]="quantityNumber.q == 1"></button>
-                                                
-                                                    <span class="mx-2">{{quantityNumber.q}}</span>
-                                                
-                                                <button class="fa-solid fa-square-plus" (click)="add(item.id)"  [disabled]="quantityNumber.q == 200"></button>
-                                      
-                                            </div>
-
+                                                <div class="quantity-buttons">
+                                                    
+                                                    <button class="fa-solid fa-square-minus" (click)="remove(item.id)"  [disabled]="quantityNumber.q == 1"></button>
+                                                    
+                                                        <span class="mx-2">{{quantityNumber.q}}</span>
+                                                    
+                                                    <button class="fa-solid fa-square-plus" (click)="add(item.id)"  [disabled]="quantityNumber.q == 200"></button>
+                                                </div>
+                                            </ng-container>
                                         </ng-container>
-                                    </ng-container>
-                                        
-                                        
-                                    <td>
+                                    </div>
+                                    <div>
                                         <ng-container  *ngFor="let quantityNumber of quantityNumbers">
                                             <ng-container *ngIf="quantityNumber.id == item.id">
                                                 <div class="price-wrap"> <var class="price">Rs.{{item.price*quantityNumber.q  | number : '1.2-2'}}</var>
@@ -58,24 +46,34 @@
                                                 </div>
                                             </ng-container>
                                         </ng-container>
-                                    </td>
-                                    <td class="text-right d-md-block"> 
+                                    </div>
+                                    <div>
                                         <ng-container *ngFor="let quantityNumber of quantityNumbers">
                                             <button *ngIf="quantityNumber.id == item.id" type="button" class="btn btn-list"  (click)="listed(item.id)"
                                             [ngClass]="{'btn-checked':quantityNumber.inList}" >
                                                 <i class="fa-solid fa-check"></i>
                                             </button>  
                                         </ng-container>
-                                                                         
-                                        <button type="button" class="btn btn-light" data-abc="true" (click)="removeCart(item.id)"> Remove</button> </td>
-                                </tr>
-    
-                            </ng-container>
-                          
-                        </tbody>
-                    </table>
-                </div>
+                                                                            
+                                        <button type="button" class="btn btn-light" data-abc="true" (click)="removeCart(item.id)"> Remove</button> 
+                                
+                                    </div>
+                                </td>
+                                
+                                    
+                                
+                                    
+                                
+                                
+                                    
+                            </tr>
+
+                        </ng-container>
+                        
+                    </tbody>
+                </table>
             </div>
+            
         </aside>
         <aside class="col-lg-3">
             <div class="card mb-3">
@@ -106,15 +104,204 @@
                         <dd class="text-right text-danger ml-3">&nbsp; {{fullOrderDetails.discount}}%</dd>
                     </dl>
                     <dl class="dlist-align">
-                        <dt>Discounted Price:</dt>
+                        <dt>New Price:</dt>
                         <dd class="text-right text-danger b ml-3"><strong>&nbsp; Rs. {{fullOrderDetails.discountedPrice | number : '1.2-2'}}</strong></dd>
                     </dl>
 
                     <hr> 
-                    <a href="#" class="btn btn-out btn-purchase  btn-main" data-abc="true"> Make Purchase </a> 
+                    <a href="#" class="btn btn-out btn-purchase  btn-main" data-abc="true" data-bs-toggle="modal" data-bs-target="#exampleModal"> Make Purchase </a>
                     <a href="#" class="btn btn-out btn-shopping  btn-main mt-2" data-abc="true">Continue Shopping</a>
                 </div>
             </div>
         </aside>
     </div>
 </div>
+
+
+<!-- <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header">
+    <h5 id="offcanvasRightLabel">Buy Product</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    Available Soon....
+  </div>
+</div> -->
+
+<!-- Buy -->
+
+<!-- Button trigger modal -->
+
+  
+  <!-- Modal -->
+  <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Pay Online</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="tabs mt-3">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation"> 
+                        <a class="nav-link active" id="visa-tab" data-toggle="tab" (click)="visaClick()" #visa
+                            role="tab" aria-controls="visa" aria-selected="true">
+                            <img src="https://i.imgur.com/sB4jftM.png" width="80"> 
+                        </a> 
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="paypal-tab" data-toggle="tab" (click)="paypalClick()" #paypal
+                            role="tab" aria-controls="paypal" aria-selected="false"> 
+                            <img src="https://i.imgur.com/yK7EDD1.png" width="80"> 
+                        </a> 
+                    </li>
+                </ul>
+                <!-- <div class="main-container" #success>
+                    <div class="check-container">
+        
+                        <div class="check-background">
+                            <svg viewBox="0 0 65 51" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7 25L27.3077 44L58.5 7" stroke="white" stroke-width="13" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <div class="check-shadow"></div>
+                    </div>
+                    <h2 class="suc-message">Payment Successful!</h2>
+                </div> -->
+                <div class="tab-content" id="myTabContent" >
+                    <div role="tabpanel" aria-labelledby="visa-tab" #visaModel>
+                        <div class="mt-4 mx-4">
+                            <div>
+                                <div class="text-center">
+                                    <h5>Credit card</h5>
+                                </div>
+                                <div class="form mt-3">
+                                    <div class="inputbox">
+                                        <input type="text" name="name" class="form-control" required="required"> <span>Cardholder Name</span> </div>
+                                    <div class="inputbox">
+                                        <input type="text" name="name" min="1" max="999" class="form-control" required="required">
+                                        <span>Card Number</span>
+                                        <i class="fa fa-eye"></i>
+                                    </div>
+                                    <div class="d-flex flex-row">
+                                        <div class="inputbox">
+                                            <input type="text" name="name" min="1" max="999" class="form-control" required="required">
+                                            <span>Expiration Date</span>
+                                        </div>
+                                    </div>
+                                    <div class="inputbox"> 
+                                        <input type="text" name="name" min="1" max="999" class="form-control" required="required"> 
+                                        <span>CVV</span> 
+                                    </div>
+                                    <div class="px-3 pay w-100">
+                                        <button class="btn btn-success btn-block w-100" (click)="pay(payButton1,1)" #payButton1>
+                                            <span #m1>Confirm Payment</span>
+                                            <span class="text-white succesbtn align-items-center justify-content-center gap-2 w-100" #m2>
+                                                <i class="fa-regular fa-circle-check"></i> Payment Success
+                                            </span>
+                                        </button> 
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="sprin mx-5" #sprin1>
+                                <div class="spinner-border" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+                    <div class="fade w-100" id="paypal" role="tabpanel" aria-labelledby="paypal-tab"  #paypalModel>
+                        <div class="px-5 mt-4 w-100">
+                            <div class="text-center" >
+                                <h5>Paypal</h5>
+                            </div>
+                            <div class="inputbox w-100 mt-4">
+                                <input type="text" name="name" class="form-control w-100" required="required"> 
+                                <span>Paypal Email Address</span>
+                            </div>
+                            <div class="pay  w-100"> 
+
+                                <button class="btn btn-success w-100" (click)="pay(payButton2,2)" #payButton2>
+                                    <span #m11>Confirm Payment</span>
+                                    <span class="text-white succesbtn align-items-center justify-content-center gap-2 w-100" #m22>
+                                        <i class="fa-regular fa-circle-check"></i> Payment Success
+                                    </span>
+                                </button> 
+                             
+                                
+
+                                <div class="sprin" #sprin2>
+                                    <div class="spinner-border" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                </div>   
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<!-- <button type="button" class="btn btn-primary launch" data-toggle="modal" data-target="#staticBackdrop"> <i
+        class="fa fa-rocket"></i> Pay Now
+</button> -->
+<!-- Modal -->
+<!-- <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="text-right"> <i class="fa fa-close close" data-dismiss="modal"></i> </div>
+                <div class="tabs mt-3">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation"> <a class="nav-link active" id="visa-tab"
+                                data-toggle="tab" href="#visa" role="tab" aria-controls="visa" aria-selected="true">
+                                <img src="https://i.imgur.com/sB4jftM.png" width="80"> </a> </li>
+                        <li class="nav-item" role="presentation"> <a class="nav-link" id="paypal-tab" data-toggle="tab"
+                                href="#paypal" role="tab" aria-controls="paypal" aria-selected="false"> <img
+                                    src="https://i.imgur.com/yK7EDD1.png" width="80"> </a> </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="visa" role="tabpanel" aria-labelledby="visa-tab">
+                            <div class="mt-4 mx-4">
+                                <div class="text-center">
+                                    <h5>Credit card</h5>
+                                </div>
+                                <div class="form mt-3">
+                                    <div class="inputbox"> <input type="text" name="name" class="form-control"
+                                            required="required"> <span>Cardholder Name</span> </div>
+                                    <div class="inputbox"> <input type="text" name="name" min="1" max="999"
+                                            class="form-control" required="required"> <span>Card Number</span> <i
+                                            class="fa fa-eye"></i> </div>
+                                    <div class="d-flex flex-row">
+                                        <div class="inputbox"> <input type="text" name="name" min="1" max="999"
+                                                class="form-control" required="required"> <span>Expiration Date</span>
+                                        </div>
+                                        <div class="inputbox"> <input type="text" name="name" min="1" max="999"
+                                                class="form-control" required="required"> <span>CVV</span> </div>
+                                    </div>
+                                    <div class="px-5 pay"> <button class="btn btn-success btn-block">Add card</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="paypal" role="tabpanel" aria-labelledby="paypal-tab">
+                            <div class="px-5 mt-5">
+                                <div class="inputbox"> <input type="text" name="name" class="form-control"
+                                        required="required"> <span>Paypal Email Address</span> </div>
+                                <div class="pay px-5"> <button class="btn btn-primary btn-block">Add paypal</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->

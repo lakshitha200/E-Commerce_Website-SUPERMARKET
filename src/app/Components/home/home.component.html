@@ -7,14 +7,14 @@
                 <h1 class="text-uppercase text-white">Shopping Made Easy</h1>
                 <div class="d-flex align-items-center justify-content-center justify-content-lg-start pt-5">
                     <a href="" class="btn border-inner text-white py-3 px-5 me-5" style="background-image: linear-gradient(to Right,#FF512F ,#F09819);">About Us</a>
-                    <button type="button" class="btn-play" routerLink="/all-products">
+                    <button type="button" class="btn-play" routerLink="/myShopping-cart">
                         <span>
                             
                             <img class="p-img" src="https://cdn-icons-png.flaticon.com/128/6020/6020602.png" alt="">
                         </span>
                        
                     </button>
-                    <h5 routerLink="/all-products"  class="font-weight-normal m-0 ms-4 d-none d-sm-block" style="color: #fbff00; cursor: pointer;">All Products</h5>
+                    <h5 routerLink="/myShopping-cart"  class="font-weight-normal m-0 ms-4 d-none d-sm-block" style="color: #fbff00; cursor: pointer;">Your Package</h5>
                 </div>
             </div>
         </div>
@@ -22,7 +22,11 @@
 </div>
 
 <div class="mycontainer my-3">
-    <h4>Products</h4>
+  <div class="heading_container heading_center mb-4">
+    <h2>
+      Best Sales
+    </h2>
+  </div>
     <div class="product-list mt-3">
         <div class="products" >
             <ng-container *ngFor="let product of products">
@@ -35,7 +39,8 @@
                     <a [routerLink]="'product-details/'+product.name+'/'+product.id">
                         <img src="{{product.image}}" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title" style="color: #025002;">{{product.name}}</h5>
+                            <h5 class="card-title" style="color: #025002;" 
+                            [ngStyle]="{'font-size':product.name.length > 25?'13px':'16px'}">{{product.name}}</h5>
                     
                             <p class="price">Rs. {{product.price}}</p>
                         </div>
@@ -346,7 +351,12 @@
     <div [ngClass]="{'open-notification':notificationToggel,'alert':true,
     'alert-success':notification.colour=='alert-success', 
     'alert-dismissible':true}" role="alert" >
-        <strong>{{ notification.message }}</strong>
+        <span class="d-flex align-items-center">
+          <span>
+            <img class="notification-img" src="../../../assets/check.png" alt="">
+          </span>
+          <strong>{{ notification.message }}</strong>
+        </span>
         <button type="button" class="btn-close"
         (click)="closeNotification()"></button>
         <div class="bar" [ngStyle]="{'background-color': notification.colour=='alert-success'?'green':'red'}"></div>

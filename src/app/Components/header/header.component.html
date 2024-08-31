@@ -38,7 +38,11 @@
               {{idList.length}}
             </span>
         </i>
-        <i class="fa-solid fa-user"></i>
+        <i class="fa-solid fa-user" type="button" data-bs-toggle="dropdown" aria-expanded="false"></i>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" [routerLink]="'sign-in'">Sign In</a></li>
+          <li><a class="dropdown-item" routerLink="sign-up">Sign Up</a></li>
+        </ul>
       </div>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
