@@ -83,7 +83,15 @@ a{
     margin-top: 8px;
     margin-left: -10px;
   }
-  
+  .alert-success{
+    background-color: #e4fcdb;
+
+  }
+  .notification-img{
+    width: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
   @keyframes anim2{
     100%{
         width: 0;
@@ -133,7 +141,7 @@ a{
       top: 120px;
     }
     .open-notification{
-      width: 80% !important;
+      width: 90% !important;
     }
   }
 

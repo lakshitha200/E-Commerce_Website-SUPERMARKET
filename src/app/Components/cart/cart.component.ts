@@ -12,8 +12,18 @@ import { OrderDetails } from '../../Models/OrderDetails';
 })
 export class CartComponent implements OnInit{
 
-  // @ViewChild('plus') plus!: ElementRef;
-  // @ViewChild('minus') minus!: ElementRef;
+  @ViewChild("visa") visa!: ElementRef;
+  @ViewChild("paypal") paypal!: ElementRef;
+  @ViewChild("visaModel") visaModel!: ElementRef;
+  @ViewChild("paypalModel") paypalModel!: ElementRef;
+  @ViewChild("sprin1") sprin1!: ElementRef;
+  @ViewChild("sprin2") sprin2!: ElementRef;
+  @ViewChild("m1") m1!: ElementRef;
+  @ViewChild("m2") m2!: ElementRef;
+  @ViewChild("m11") m11!: ElementRef;
+  @ViewChild("m22") m22!: ElementRef;
+  // @ViewChild("success") success!: ElementRef;
+
 
   constructor(private cartService:CartService,private productService:ProductService,
     private priceLogicService:PriceLogicService){}
@@ -115,5 +125,50 @@ export class CartComponent implements OnInit{
     this.fullOrderDetails = new OrderDetails(this.fullOrder,total,count,deliveryFee,coupon,discount,total -(total * 5)/100);
 
     console.log(this.fullOrderDetails);
+  }
+
+  visaClick(){
+    this.paypalModel.nativeElement.style.display = "none";
+    this.visaModel.nativeElement.style.display = "block";
+    this.visa.nativeElement.classList.add("active")
+    this.paypal.nativeElement.classList.remove("active")
+  }
+  paypalClick(){
+    this.visaModel.nativeElement.style.display = "none";
+    this.paypalModel.nativeElement.classList.remove("fade");
+    this.paypal.nativeElement.classList.add("active")
+    this.visa.nativeElement.classList.remove("active")
+    this.paypalModel.nativeElement.style.display = "flex";
+  }
+
+  pay(button:HTMLElement,id:number){ 
+    if(id==1){
+      this.sprin1.nativeElement.style.display = "flex";
+      button.style.display = "none";
+      setTimeout(()=>{
+        this.sprin1.nativeElement.style.display = "none";
+        button.style.display = "flex";
+        button.style.backgroundImage = `linear-gradient(to right, #013d01,#013d01)`;
+        this.m1.nativeElement.style.display = "none";
+        this.m2.nativeElement.style.display = "flex";
+        setTimeout(()=>{
+          window.location.reload()
+        },2000)
+      },3000)
+    }else{
+      this.sprin2.nativeElement.style.display = "flex";
+      button.style.display = "none";
+      setTimeout(()=>{
+        this.sprin2.nativeElement.style.display = "none";
+        button.style.display = "flex";
+        button.style.backgroundImage = `linear-gradient(to right, #013d01,#013d01)`;
+        this.m11.nativeElement.style.display = "none";
+        this.m22.nativeElement.style.display = "flex";
+        setTimeout(()=>{
+          window.location.reload()
+        },2000)
+      },3000)
+    }
+    
   }
 }

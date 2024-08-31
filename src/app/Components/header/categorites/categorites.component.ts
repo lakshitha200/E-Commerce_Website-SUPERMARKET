@@ -9,6 +9,9 @@ export class CategoritesComponent implements OnInit{
 
   @ViewChild("clcikCategory") clcikCategory!: ElementRef;
   @ViewChild("categoryMenu") categoryMenu!: ElementRef;
+
+
+  
   
   ngOnInit(): void {
 
@@ -29,4 +32,6 @@ export class CategoritesComponent implements OnInit{
     //   console.log(this.clcikCategory.nativeElement)
     // }
   }
+
+ 
 }

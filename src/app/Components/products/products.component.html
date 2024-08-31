@@ -14,7 +14,8 @@
                     <a [routerLink]="'product-details/'+product.name+'/'+product.id">
                         <img src="{{product.image}}" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title" style="color: #025002;">{{product.name}}</h5>
+                            <h5 class="card-title" style="color: #025002;"
+                            [ngStyle]="{'font-size':product.name.length > 25?'13px':'16px'}">{{product.name}}</h5>
                     
                             <p class="price">Rs. {{product.price}}</p>
                         </div>
@@ -30,7 +31,12 @@
     <div [ngClass]="{'open-notification':notificationToggel,'alert':true,
     'alert-success':notification.colour=='alert-success', 
     'alert-dismissible':true}" role="alert" >
-        <strong>{{ notification.message }}</strong>
+        <span class="d-flex align-items-center">
+            <span>
+            <img class="notification-img" src="../../../assets/check.png" alt="">
+            </span>
+            <strong>{{ notification.message }}</strong>
+        </span>
         <button type="button" class="btn-close"
         (click)="closeNotification()"></button>
         <div class="bar" [ngStyle]="{'background-color': notification.colour=='alert-success'?'green':'red'}"></div>
