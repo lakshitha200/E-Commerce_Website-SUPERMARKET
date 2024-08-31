@@ -54,6 +54,10 @@ export class ProductsComponent implements OnInit{
       this.products = this.productService.fruits;
     }else if(category == 'beverages'){
       this.products = this.productService.beverages;
+    }else if(category == 'fishAndMeat'){
+      this.products = this.productService.fishAndMeat;
+    }else if(category == 'household'){
+      this.products = this.productService.household;
     }
     
     else{

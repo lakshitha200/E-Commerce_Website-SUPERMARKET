@@ -51,6 +51,7 @@ export class ProductService{
             price : 180,
             quantity: "500g",
             category: "vegetable",
+            popular: "popular",
             image : "https://cargillsonline.com/VendorItems/MenuItems/VGE0254_1.jpg"
         },
         {
@@ -109,6 +110,7 @@ export class ProductService{
             price : 195,
             quantity: "250g",
             category: "vegetable",
+            popular: "popular",
             image : "https://essstr.blob.core.windows.net/essimg/350x/Small/Pic915008.jpg"
         },
         {
@@ -136,6 +138,7 @@ export class ProductService{
             price : 1386,
             quantity: "700g",
             category: "fruits",
+            popular: "popular",
             image : "https://essstr.blob.core.windows.net/essimg/350x/Small/Pic924007.jpg"
         },
         {
@@ -272,5 +275,121 @@ export class ProductService{
 
         
     ]
-    products:any[] = this.vegetables.concat(this.beverages,this.fruits);
+
+    fishAndMeat:any[] = [
+        {
+            id : 250,
+            name : "Thalapath Slices - 250.00 g",
+            price : 861,
+            quantity: "250g",
+            category: "fishAndMeat",
+            image : "https://cargillsonline.com/VendorItems/MenuItems/FFE0033_1.jpg"
+        },
+        {
+            id : 251,
+            name : "Thalapath Slices - 500.00 g",
+            price : 1737,
+            quantity: "500g",
+            category: "fishAndMeat",
+            image : "https://cargillsonline.com/VendorItems/MenuItems/FFE0032_1.jpg"
+        },
+        {
+            id : 252,
+            name : "My Choice Mackerel - 425.00 g",
+            price : 499,
+            quantity: "425g",
+            category: "fishAndMeat",
+            image : "https://cargillsonline.com/VendorItems/MenuItems/CF58301_1.jpg"
+        },
+        {
+            id : 253,
+            name : "Prima Chicken Meat Balls",
+            price : 756.50,
+            quantity: "500g",
+            category: "fishAndMeat",
+            popular: "popular",
+            image : "https://cargillsonline.com/VendorItems/MenuItems/FF33147_1.jpg"
+        },
+        {
+            id : 254,
+            name : "Prima-Chicken-Sausages",
+            price : 1041,
+            quantity: "500g",
+            category: "fishAndMeat",
+            popular: "popular",
+            image : "https://cargillsonline.com/VendorItems/MenuItems/FF33106_1.jpg"
+        },
+        {
+            id : 255,
+            name : "Kumblawa",
+            price : 980,
+            quantity: "1kg",
+            category: "fishAndMeat",
+            image : "https://essstr.blob.core.windows.net/essimg/350x/Small/Pic941021.jpg"
+        },
+        {
+            id : 256,
+            name : "CIC Skinless Chicken Breast",
+            price : 2124.54,
+            quantity: "1.20kg",
+            category: "fishAndMeat",
+            image : "https://cargillsonline.com/VendorItems/MenuItems/MTE0095_1.jpg"
+        },
+        {
+            id : 257,
+            name : "Crysbro-Chicken-Home-Pack",
+            price : 770,
+            quantity: "700g",
+            category: "fishAndMeat",
+            image : "https://cargillsonline.com/VendorItems/MenuItems/MT30693_1.jpg"
+        },
+        {
+            id : 258,
+            name : "Alagoduwa",
+            price : 740,
+            quantity: "1kg",
+            category: "fishAndMeat",
+            image : "https://essstr.blob.core.windows.net/essimg/350x/Small/Pic941001.jpg"
+        },
+       
+        
+        
+    ]
+
+    household:any[] = [
+        {
+            id : 300,
+            name : "Diva Colour Guard Liquid Detergent",
+            price : 435,
+            quantity: "1L",
+            category: "household",
+            image : "https://cargillsonline.com/VendorItems/MenuItems/HHE0233_1.jpg"
+        },
+        {
+            id : 301,
+            name : "Surf Excel Laundry Detergent Powder Comfort",
+            price : 432,
+            quantity: "1L",
+            category: "household",
+            image : "https://cargillsonline.com/VendorItems/MenuItems/HH11650_1.jpg"
+        },
+        {
+            id : 302,
+            name : "Vim Liquid Dashwash",
+            price : 318,
+            quantity: "500ml",
+            category: "household",
+            image : "https://cargillsonline.com/VendorItems/MenuItems/HH30636_1.jpg"
+        },
+        {
+            id : 303,
+            name : "Sunlight Clean Lemon Fresh Washing Powder",
+            price : 304,
+            quantity: "1kg",
+            category: "household",
+            popular:"popular",
+            image : "https://cargillsonline.com/VendorItems/MenuItems/HHE0233_1.jpg"
+        },
+    ]
+    products:any[] = this.vegetables.concat(this.beverages,this.fruits,this.fishAndMeat,this.household);
 }

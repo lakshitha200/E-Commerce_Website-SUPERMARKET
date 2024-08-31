@@ -12,7 +12,7 @@
             <h5 style="color: #FF512F;">Rs. {{product.price | number : '1.2-2'}}</h5>
 
             <div class="buy-cart mt-3">
-                <button class="buy" role="button"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Buy Now</button>
+                <button class="buy" role="button" routerLink="/myShopping-cart" (click)="addToCart(product.id)">Buy Now</button>
 
                 <button [ngClass]="{'cart':idList.includes(product.id)==false,'disabled':idList.includes(product.id)}" role="button" 
                 (click)="addToCart(product.id)" [disabled]="idList.includes(product.id)">Add to Cart <i class="fa-solid fa-cart-shopping"></i></button>
