@@ -2,26 +2,16 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.6.
 
-## Development server
+- Designed and developed a dynamic, responsive front-end for a supermarket e-commerce site using Angular and Bootstrap. 
+- Enhanced user experience with intuitive, user-friendly features.
+- Watch my website - (https://super-market-78413.web.app/)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
+![Screenshot (536)](https://github.com/user-attachments/assets/4a745e82-9e7b-4354-ad36-fd3ff1c4ee4d)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+![Screenshot (537)](https://github.com/user-attachments/assets/e6a32d96-0272-4be2-a86a-beaf59230759)
+![Screenshot (538)](https://github.com/user-attachments/assets/53840169-0efe-4d81-8304-945b8af029f6)
+![Screenshot (541)](https://github.com/user-attachments/assets/bd7e848d-953c-44dc-ae6c-5dc1ab112ee9)
+![Screenshot (539)](https://github.com/user-attachments/assets/ffa742ec-d774-4ff2-b143-2beb8a2572de)
+![Screenshot (540)](https://github.com/user-attachments/assets/f68d6872-49ad-4daf-ac16-e177acd57d5e)
+![Screenshot (542)](https://github.com/user-attachments/assets/8f908bde-a0aa-44c6-9bb6-a5d0d31bf6db)
