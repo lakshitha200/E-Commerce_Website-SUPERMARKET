@@ -1,4 +1,4 @@
-import { Inject, Injectable, PLATFORM_ID } from "@angular/core";
+import { afterNextRender, Inject, Injectable, PLATFORM_ID } from "@angular/core";
 import { isPlatformBrowser } from "@angular/common";
 import { BehaviorSubject, map } from "rxjs";
 
@@ -20,7 +20,14 @@ export class CartService{
     readonly count$ = this.lines$.pipe(map(lines => lines.length));
 
     constructor(@Inject(PLATFORM_ID) private platformId: object){
-        this.lines$.next(this.read());
+        // Load after the first render (browser only) so the client matches the
+        // server-rendered HTML and hydration doesn't report a mismatch.
+        afterNextRender(() => {
+            const saved = this.read();
+            if(saved.length && !this.lines$.value.length){
+                this.lines$.next(saved);
+            }
+        });
     }
 
     get lines(): CartLine[] {

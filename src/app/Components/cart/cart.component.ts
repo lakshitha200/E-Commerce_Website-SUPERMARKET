@@ -43,10 +43,12 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   get count(){ return this.items.reduce((n, i) => n + i.qty, 0); }
-  get subtotal(){ return this.items.reduce((t, i) => t + i.product.price * i.qty, 0); }
-  get discount(){ return this.subtotal * (DISCOUNT_PCT + this.couponPct) / 100; }
+  get subtotal(){ return this.round(this.items.reduce((t, i) => t + i.product.price * i.qty, 0)); }
+  get discount(){ return this.round(this.subtotal * (DISCOUNT_PCT + this.couponPct) / 100); }
   get delivery(){ return !this.items.length || this.subtotal >= FREE_DELIVERY_OVER ? 0 : DELIVERY_FEE; }
-  get total(){ return this.subtotal - this.discount + this.delivery; }
+  get total(){ return this.round(this.subtotal - this.discount + this.delivery); }
+
+  private round(n: number){ return Math.round(n * 100) / 100; }
   get toFreeDelivery(){ return Math.max(FREE_DELIVERY_OVER - this.subtotal, 0); }
   get discountPct(){ return DISCOUNT_PCT + this.couponPct; }
 
