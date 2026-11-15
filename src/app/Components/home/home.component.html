@@ -25,6 +25,35 @@
   </div>
 </section>
 
+<!-- Advertising carousel -->
+<section class="mycontainer block" aria-label="Offers and promotions">
+  <div class="carousel" role="region" aria-roledescription="carousel"
+       (mouseenter)="pause()" (mouseleave)="resume()" (focusin)="pause()" (focusout)="resume()"
+       (touchstart)="touchStart($event)" (touchend)="touchEnd($event)">
+    <div class="track" [style.transform]="'translateX(-' + current * 100 + '%)'">
+      <article class="slide" *ngFor="let s of slides; let i = index" [ngClass]="'t-' + s.theme"
+               role="group" [attr.aria-roledescription]="'slide'" [attr.aria-label]="(i + 1) + ' of ' + slides.length"
+               [attr.aria-hidden]="i !== current">
+        <div class="slide-copy">
+          <span class="badge-ad">{{s.badge}}</span>
+          <h2>{{s.title}}</h2>
+          <p>{{s.text}}</p>
+          <a [routerLink]="s.link" class="btn-ad" [attr.tabindex]="i === current ? 0 : -1">{{s.cta}} <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <i class="fa-solid slide-ico" [ngClass]="s.icon" aria-hidden="true"></i>
+      </article>
+    </div>
+
+    <button type="button" class="nav prev" (click)="prev()" aria-label="Previous offer"><i class="fa-solid fa-chevron-left"></i></button>
+    <button type="button" class="nav next" (click)="next()" aria-label="Next offer"><i class="fa-solid fa-chevron-right"></i></button>
+
+    <div class="dots" role="tablist" aria-label="Choose offer">
+      <button type="button" *ngFor="let s of slides; let i = index" role="tab" [class.on]="i === current"
+              [attr.aria-selected]="i === current" [attr.aria-label]="'Go to offer ' + (i + 1)" (click)="go(i)"></button>
+    </div>
+  </div>
+</section>
+
 <!-- Categories -->
 <section class="mycontainer block">
   <div class="section-head">
