@@ -392,4 +392,28 @@ export class ProductService{
         },
     ]
     products:any[] = this.vegetables.concat(this.beverages,this.fruits,this.fishAndMeat,this.household);
+
+    /** Categories shown in the menus. `key` is the route parameter. */
+    categories = [
+        { key: 'vegetables', label: 'Vegetables',   icon: 'fa-carrot' },
+        { key: 'fruits',     label: 'Fruits',       icon: 'fa-apple-whole' },
+        { key: 'fishAndMeat',label: 'Fish & Meat',  icon: 'fa-fish' },
+        { key: 'beverages',  label: 'Beverages',    icon: 'fa-mug-hot' },
+        { key: 'household',  label: 'Household',    icon: 'fa-pump-soap' },
+    ];
+
+    getByCategory(key: string | null): any[] {
+        switch(key){
+            case 'vegetables': return this.vegetables;
+            case 'fruits': return this.fruits;
+            case 'beverages': return this.beverages;
+            case 'fishAndMeat': return this.fishAndMeat;
+            case 'household': return this.household;
+            default: return this.products;
+        }
+    }
+
+    getById(id: number): any | undefined {
+        return this.products.find(p => p.id == id);
+    }
 }

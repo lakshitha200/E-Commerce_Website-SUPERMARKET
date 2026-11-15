@@ -1,46 +1,36 @@
+<section class="page mycontainer">
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <a routerLink="/">Home</a> <i class="fa-solid fa-chevron-right"></i>
+    <a routerLink="/all-products">Products</a>
+    <ng-container *ngIf="category || query"> <i class="fa-solid fa-chevron-right"></i> <span>{{title}}</span></ng-container>
+  </nav>
 
-<div class="mycontainer my-3">
-    <h4>ALL Products</h4>
-
-    <div class="product-list mt-3">
-        <div class="products" >
-            <ng-container *ngFor="let product of products">
-                <div class="card">
-                    <div class="quantity position-absolute px-3 py-1" style="background-color: #fbff00; font-weight: 500;">{{product.quantity}}</div>
-                    <button [disabled]="idList.includes(product.id)"
-                    class="btn cart position-absolute end-0 px-3 py-1 text-white" style="background-color: #025002;" (click)="addToCart(product.id)">
-                        <i class="fa-solid fa-cart-shopping" [ngStyle]="{color: idList.includes(product.id)?'#fbff00':'#fff'}"></i>
-                    </button>
-                    <a [routerLink]="'product-details/'+product.name+'/'+product.id">
-                        <img src="{{product.image}}" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title" style="color: #025002;"
-                            [ngStyle]="{'font-size':product.name.length > 25?'13px':'16px'}">{{product.name}}</h5>
-                    
-                            <p class="price">Rs. {{product.price}}</p>
-                        </div>
-                    </a>
-                </div>
-            </ng-container>
-            
-        </div>
+  <div class="head">
+    <div>
+      <h1 class="page-title">{{title}}</h1>
+      <p class="page-sub">{{products.length}} {{products.length === 1 ? 'item' : 'items'}} found</p>
     </div>
-</div>
+    <label class="sort">
+      <span>Sort by</span>
+      <select (change)="setSort($any($event.target).value)" aria-label="Sort products">
+        <option value="default">Featured</option>
+        <option value="low">Price: low to high</option>
+        <option value="high">Price: high to low</option>
+        <option value="name">Name: A to Z</option>
+      </select>
+    </label>
+  </div>
 
-<ng-container *ngIf="notificationToggel">
-    <div [ngClass]="{'open-notification':notificationToggel,'alert':true,
-    'alert-success':notification.colour=='alert-success', 
-    'alert-dismissible':true}" role="alert" >
-        <span class="d-flex align-items-center">
-            <span>
-            <img class="notification-img" src="../../../assets/check.png" alt="">
-            </span>
-            <strong>{{ notification.message }}</strong>
-        </span>
-        <button type="button" class="btn-close"
-        (click)="closeNotification()"></button>
-        <div class="bar" [ngStyle]="{'background-color': notification.colour=='alert-success'?'green':'red'}"></div>
+  <div class="product-grid" *ngIf="products.length; else none">
+    <app-product-card *ngFor="let p of products" [product]="p"></app-product-card>
+  </div>
+
+  <ng-template #none>
+    <div class="card-soft empty">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <h2>No products found</h2>
+      <p>Try a different search or browse a category.</p>
+      <a routerLink="/all-products" class="btn-fresh">View all products</a>
     </div>
-</ng-container>
-
-
+  </ng-template>
+</section>

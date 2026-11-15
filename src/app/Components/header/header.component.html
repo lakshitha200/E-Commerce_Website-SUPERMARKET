@@ -1,91 +1,57 @@
-<div class="small-topbanner">
-    <div class="line">
-        <i class="fa-solid fa-location-dot"></i>
-        <span>Store Location : <span style="color: #fbff00;">Moratuwa</span>&nbsp; &nbsp;|</span>
-    </div>
-    <div class="line">
-        <i class="fa-solid fa-truck"></i>
-        <span>Shipping Method : <span style="color: #fbff00;">Delivery</span>&nbsp; &nbsp;|</span>
-    </div>
+<div class="topbar">
+  <div class="mycontainer topbar-in">
+    <span><i class="fa-solid fa-location-dot"></i> Delivering from <b>Moratuwa</b></span>
+    <span class="dot">•</span>
+    <span class="promo"><i class="fa-solid fa-truck-fast"></i> Free delivery over Rs. 5,000</span>
+    <span class="spacer"></span>
+    <a routerLink="/contact"><i class="fa-regular fa-comments"></i> Help</a>
+  </div>
+</div>
 
-    <a class="signup dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-        <i class="fa-solid fa-right-to-bracket mt-1"></i>
-        <span>Signup | Login</span>
+<header class="site-header">
+  <div class="mycontainer bar">
+    <a routerLink="/" class="brand" aria-label="Freshora home">
+      <img src="assets/logo-mark.svg" alt="" width="40" height="40">
+      <span class="brand-name">Fresh<span>ora</span></span>
     </a>
-    <ul class="dropdown-menu">
-      <li><a class="dropdown-item" [routerLink]="'sign-in'">Sign In</a></li>
-      <li><a class="dropdown-item" routerLink="sign-up">Sign Up</a></li>
-    </ul>
 
-    <div><img src="https://cargillsonline.com/Assets/web/img/a2.png" alt=""></div>
-    <div><img src="https://cargillsonline.com/Assets/web/img/a1.png" alt=""></div>
-</div>
+    <div class="search-slot"><app-search></app-search></div>
 
-<div class="navbar-categories">
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-      <a class="navbar-brand" [routerLink]="'home'"><img src="../../../assets/logo1.jpg" alt=""></a>
-      <app-search></app-search>
+    <nav class="links" [class.open]="menuOpen" aria-label="Main">
+      <a routerLink="/" [routerLinkActiveOptions]="{exact:true}" routerLinkActive="active" (click)="menuOpen=false">Home</a>
+      <a routerLink="/all-products" routerLinkActive="active" (click)="menuOpen=false">All Products</a>
+      <a routerLink="/bill-payment" routerLinkActive="active" (click)="menuOpen=false">Bill Payment</a>
+      <a routerLink="/contact" routerLinkActive="active" (click)="menuOpen=false">Contact</a>
+    </nav>
 
-      <div class="navButtons navButtons2">
-        <i class="fa-solid fa-bell position-relative">
-            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                9+
-            </span>
-        </i>
-        <i class="fa-solid fa-cart-shopping position-relative" [routerLink]="'myShopping-cart'">
-            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-              {{idList.length}}
-            </span>
-        </i>
-        <i class="fa-solid fa-user" type="button" data-bs-toggle="dropdown" aria-expanded="false"></i>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" [routerLink]="'sign-in'">Sign In</a></li>
-          <li><a class="dropdown-item" routerLink="sign-up">Sign Up</a></li>
+    <div class="actions">
+      <a routerLink="/notifications" class="icon-btn" aria-label="Notifications"><i class="fa-regular fa-bell"></i></a>
+      <a routerLink="/myShopping-cart" class="icon-btn" aria-label="Cart">
+        <i class="fa-solid fa-basket-shopping"></i>
+        <span class="count" *ngIf="(cart.count$ | async) as n">{{n}}</span>
+      </a>
+
+      <div class="dropdown">
+        <button class="icon-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Account">
+          <i class="fa-regular fa-user"></i>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <ng-container *ngIf="auth.isLogged$ | async; else guest">
+            <li><a class="dropdown-item" routerLink="/profile"><i class="fa-regular fa-id-card me-2"></i>My profile</a></li>
+            <li><button class="dropdown-item" type="button" (click)="logout()"><i class="fa-solid fa-arrow-right-from-bracket me-2"></i>Sign out</button></li>
+          </ng-container>
+          <ng-template #guest>
+            <li><a class="dropdown-item" routerLink="/sign-in"><i class="fa-solid fa-arrow-right-to-bracket me-2"></i>Sign in</a></li>
+            <li><a class="dropdown-item" routerLink="/sign-up"><i class="fa-solid fa-user-plus me-2"></i>Create account</a></li>
+          </ng-template>
         </ul>
       </div>
 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+      <button class="icon-btn burger" type="button" (click)="menuOpen = !menuOpen" [attr.aria-expanded]="menuOpen" aria-label="Toggle menu">
+        <i class="fa-solid" [ngClass]="menuOpen ? 'fa-xmark' : 'fa-bars'"></i>
       </button>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-1">
-          
-          <li class="nav-item">
-            <a class="nav-link" [routerLink]="'home'" routerLinkActive="active">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" [routerLink]="'all-products'" routerLinkActive="active">All Products</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" [routerLink]="'contact'" routerLinkActive="active">Contact</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#" routerLinkActive="active">Bill Payment</a>
-          </li>
-          
-          
-        </ul>
-        
-      </div>
-      <div class="navButtons navButtons1">
-        <i class="fa-solid fa-bell position-relative">
-            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                9+
-            </span>
-        </i>
-        <i class="fa-solid fa-cart-shopping position-relative" [routerLink]="'myShopping-cart'">
-            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                {{idList.length}}
-            </span>
-        </i>
-      </div>
     </div>
-  </nav>
-  
-
+  </div>
+  <div class="mycontainer mobile-search"><app-search></app-search></div>
   <app-categorites></app-categorites>
-</div>
-
- 
+</header>

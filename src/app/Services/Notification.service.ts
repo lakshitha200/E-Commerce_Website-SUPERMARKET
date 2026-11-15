@@ -1,32 +1,32 @@
 import { Injectable } from "@angular/core";
-import { ProductService } from "./Product.service";
+import { BehaviorSubject } from "rxjs";
 import { Notification } from "../Models/Notification";
 
+/** Toast messages shown by <app-notification>. Also keeps a small history for the notifications page. */
 @Injectable({
     providedIn:"root"
 })
 export class NotificationService{
 
-    constructor(private productService:ProductService){}
-    notification!: Notification;
+    private toastSubject = new BehaviorSubject<Notification | null>(null);
+    readonly toast$ = this.toastSubject.asObservable();
 
-    loggingNotification(){
+    history: Notification[] = [];
+    private timer: any;
 
+    show(message: string, colour: "alert-success" | "alert-danger" | "alert-info" = "alert-success", name = "toast"){
+        const n = new Notification(name, message, colour);
+        this.history.unshift(n);
+        this.history = this.history.slice(0, 20);
+        this.toastSubject.next(n);
+
+        clearTimeout(this.timer);
+        this.timer = setTimeout(() => this.dismiss(), 4000);
+        return n;
     }
 
-    addToCartNotification(id: number){
-        const selectedProduct = this.productService.products.find(select => select.id == id);
-        
-        this.notification = new Notification(
-            "addToCartNotification",
-            "Success! "+ selectedProduct.name +" added to cart.",
-            "alert-success"
-        );
-
-        return this.notification;
-    }
-
-    alReadyInTheCart(id: number){
-        
+    dismiss(){
+        clearTimeout(this.timer);
+        this.toastSubject.next(null);
     }
 }

@@ -1,0 +1,9 @@
+:host { display: block; }
+.pcard { height: 100%; }
+.card-link { display: flex; flex-direction: column; flex: 1; color: inherit; }
+.name { margin: 0; }
+.body { padding-bottom: 0; }
+.foot { display: flex; align-items: center; justify-content: space-between; padding: 8px 16px 16px; }
+.price { font-weight: 800; color: var(--green-700); font-size: 1.05rem; }
+.price small { font-weight: 600; color: var(--muted); font-size: .72rem; margin-right: 2px; }
+@media (max-width: 575px) { .foot { padding: 6px 12px 12px; } }

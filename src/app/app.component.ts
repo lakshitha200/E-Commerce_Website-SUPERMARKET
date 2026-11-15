@@ -1,20 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent implements OnInit{
-  title = 'SuperMarket';
-  constructor(private router:Router){}
-
-  ngOnInit(): void {
-    this.router.events.subscribe((event)=>{
-      if(event instanceof NavigationEnd){
-        window.scrollTo(0,0);
-      }
-    })
-  }
+export class AppComponent {
+  title = 'Freshora';
+  // Scroll-to-top on navigation is handled by the router (scrollPositionRestoration in app-routing.module.ts).
 }

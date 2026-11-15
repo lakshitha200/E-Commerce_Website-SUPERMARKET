@@ -17,6 +17,7 @@ import { SigninComponent } from './Components/header/signin/signin.component';
 import { SignupComponent } from './Components/header/signup/signup.component';
 import { ContactComponent } from './Components/header/contact/contact.component';
 import { BillPaymentsComponent } from './Components/header/bill-payments/bill-payments.component';
+import { ProductCardComponent } from './Components/product-card/product-card.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { BillPaymentsComponent } from './Components/header/bill-payments/bill-pa
     SigninComponent,
     SignupComponent,
     ContactComponent,
-    BillPaymentsComponent
+    BillPaymentsComponent,
+    ProductCardComponent
   ],
   imports: [
     BrowserModule,

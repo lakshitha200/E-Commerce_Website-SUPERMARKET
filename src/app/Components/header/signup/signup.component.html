@@ -1,46 +1,23 @@
-<div class="mycontainer">
-    <div class="wrapper">
-        <div class="title">
-           Sign Up Form
-        </div>
-        <form action="#">
-            <div class="field">
-                <input type="text" name="name" required>
-                <label>Name</label>
-            </div>
-           <div class="field">
-              <input type="text" name="username" required>
-              <label>Username</label>
-           </div>
-           <div class="field">
-              <input type="password" name="password" required>
-              <label>Password</label>
-           </div>
-           <div class="field">
-            <input type="email" name="email" required>
-            <label>Email</label>
-            </div>
-            <div class="field">
-                <input type="number" name="phone" required>
-                <label>Phone Number</label>
-            </div>
-            <div class="field">
-                <input type="text" name="location" required>
-                <label>Address</label>
-            </div>
-            <!-- <div class="field">
-                <input type="file" name="image" required>
-                <label>Image</label>
-            </div> -->
-      
-           <div class="field">
-              <input type="submit" value="Sign Up">
-           </div>
-           <div class="signup-link">
-              Already a member? <a routerLink="/sign-in">Signin now</a>
-           </div>
-        </form>
-     </div>
-</div>
-     
+<section class="page mycontainer">
+  <div class="card-soft center-card wide">
+    <h1>Create your account</h1>
+    <p class="lead">Join Freshora for faster checkout and exclusive offers.</p>
 
+    <form #f (submit)="submit($event, f)">
+      <div class="grid2">
+        <div class="form-field"><label for="name">Full name</label><input id="name" type="text" name="name" autocomplete="name" required></div>
+        <div class="form-field"><label for="username">Username</label><input id="username" type="text" name="username" autocomplete="username" required></div>
+        <div class="form-field"><label for="email">Email</label><input id="email" type="email" name="email" autocomplete="email" required></div>
+        <div class="form-field"><label for="phone">Phone number</label><input id="phone" type="tel" name="phone" autocomplete="tel" required></div>
+        <div class="form-field"><label for="password">Password</label><input id="password" type="password" name="password" autocomplete="new-password" required></div>
+        <div class="form-field"><label for="confirm">Confirm password</label><input id="confirm" type="password" name="confirm" autocomplete="new-password" required></div>
+      </div>
+      <div class="form-field"><label for="location">Delivery address</label><input id="location" type="text" name="location" autocomplete="street-address" required></div>
+
+      <div class="error" *ngIf="error" role="alert">{{error}}</div>
+
+      <button type="submit" class="btn-fresh btn-block">Create account</button>
+      <p class="alt">Already a member? <a routerLink="/sign-in">Sign in</a></p>
+    </form>
+  </div>
+</section>

@@ -1,0 +1,14 @@
+.profile { display: flex; align-items: center; gap: 20px; padding: 24px; margin-bottom: 20px; flex-wrap: wrap; }
+.avatar { position: relative; width: 76px; height: 76px; border-radius: 50%; background: var(--green-100); color: var(--green-600); display: grid; place-items: center; font-size: 1.8rem; overflow: hidden; flex-shrink: 0; }
+.avatar img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.who { flex: 1; min-width: 180px; }
+.who h1 { font-size: 1.5rem; margin: 0; }
+.who span { color: var(--muted); }
+.grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.cell { display: flex; align-items: center; gap: 16px; padding: 18px 20px; }
+.cell > i { width: 46px; height: 46px; border-radius: 14px; background: var(--green-100); color: var(--green-600); display: grid; place-items: center; flex-shrink: 0; }
+.cell div { display: flex; flex-direction: column; min-width: 0; }
+.cell small { color: var(--muted); }
+.cell b { font-weight: 600; overflow-wrap: anywhere; }
+.shortcuts { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+@media (max-width: 575px) { .grid { grid-template-columns: 1fr; } }

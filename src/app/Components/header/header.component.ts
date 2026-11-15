@@ -1,22 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { CartService } from '../../Services/Cart.service';
+import { AuthService } from '../../Services/Auth.service';
+import { NotificationService } from '../../Services/Notification.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
-export class HeaderComponent implements OnInit{
+export class HeaderComponent {
 
-  constructor(private cartService:CartService){}
+  constructor(public cart:CartService, public auth:AuthService,
+              private router:Router, private notifications:NotificationService){}
 
-  idList:any[]=[];
+  menuOpen = false;
 
-  ngOnInit(): void {
-
-    //get cart list
-    this.idList = this.cartService.getAllFromLocalStorage();
-    console.log(this.idList);
+  logout(){
+    this.auth.logOut();
+    this.notifications.show('You have been signed out.', 'alert-info');
+    this.router.navigate(['/']);
   }
-
 }

@@ -6,11 +6,5 @@ export const CanActivate = ()=>{
     const authService = inject(AuthService);
     const router = inject(Router);
 
-    if(authService.isAuthenticated()){
-        return true;
-    }else {
-        alert("You should log first.")
-        return false;
-    }
-
+    return authService.isAuthenticated() ? true : router.createUrlTree(['/sign-in']);
 }
