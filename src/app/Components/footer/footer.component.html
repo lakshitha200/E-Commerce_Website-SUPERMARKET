@@ -1,52 +1,52 @@
 <footer class="footer">
-    <div class="container">
-     <div class="row">
-       <div class="footer-col">
-         <h4>company</h4>
-         <ul>
-           <li><a href="#">about us</a></li>
-           <li><a href="#">our services</a></li>
-           <li><a href="#">privacy policy</a></li>
-           <li><a href="#">affiliate program</a></li>
-         </ul>
-       </div>
-       <div class="footer-col">
-         <h4>get help</h4>
-         <ul>
-           <li><a href="#">FAQ</a></li>
-           <li><a href="#">shipping</a></li>
-           <li><a href="#">returns</a></li>
-           <li><a href="#">order status</a></li>
-           <li><a href="#">payment options</a></li>
-         </ul>
-       </div>
-       <div class="footer-col">
-         <h4>online shop</h4>
-         <ul>
-           <li><a href="#">Vegetables</a></li>
-           <li><a href="#">Fruits</a></li>
-           <li><a href="#">Beverages</a></li>
-           <li><a href="#">Homeware</a></li>
-         </ul>
-       </div>
-       <div class="footer-col">
-         <h4>follow us</h4>
-         <div class="social-links">
-           <a href="#"><i class="fab fa-facebook-f"></i></a>
-           <a href="#"><i class="fab fa-twitter"></i></a>
-           <a href="#"><i class="fab fa-instagram"></i></a>
-           <a href="#"><i class="fab fa-linkedin-in"></i></a>
-         </div>
-         <div class="playstore mt-2">
-          <h5 class="text-white mb-3">Download Mobile App</h5>
-          <img src="https://cargillsonline.com/Assets/web/img/a2.png" alt="">
-          <img src="https://cargillsonline.com/Assets/web/img/a1.png" alt="">
-         </div>
-       </div>
-     </div>
-     <hr style="color: #fff;">
-     <div class="copyright text-center text-white mt-2">
-        <p>Copyright © 2024 SUPERMARKET. All Rights Reserved</p>
-     </div>
+  <div class="mycontainer grid">
+    <div class="about">
+      <a routerLink="/" class="brand">
+        <img src="assets/logo-mark.svg" alt="" width="40" height="40">
+        <span>Fresh<b>ora</b></span>
+      </a>
+      <p>Farm-fresh groceries, daily essentials and household items - picked with care and delivered to your door.</p>
+      <div class="social">
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      </div>
     </div>
- </footer>
+
+    <div>
+      <h4>Shop</h4>
+      <ul>
+        <li><a routerLink="/all-products/vegetables">Vegetables</a></li>
+        <li><a routerLink="/all-products/fruits">Fruits</a></li>
+        <li><a routerLink="/all-products/fishAndMeat">Fish &amp; Meat</a></li>
+        <li><a routerLink="/all-products/beverages">Beverages</a></li>
+        <li><a routerLink="/all-products/household">Household</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4>Company</h4>
+      <ul>
+        <li><a routerLink="/all-products">All products</a></li>
+        <li><a routerLink="/bill-payment">Bill payments</a></li>
+        <li><a routerLink="/myShopping-cart">My cart</a></li>
+        <li><a routerLink="/contact">Contact us</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4>Get in touch</h4>
+      <ul class="contact">
+        <li><i class="fa-solid fa-location-dot"></i> Moratuwa, Sri Lanka</li>
+        <li><i class="fa-solid fa-phone"></i> +94 11 234 5678</li>
+        <li><i class="fa-regular fa-envelope"></i> hello&#64;freshora.lk</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="mycontainer legal">
+    <span>&copy; {{year}} Freshora. All rights reserved.</span>
+    <span>Made with <i class="fa-solid fa-heart"></i> for fresh living</span>
+  </div>
+</footer>

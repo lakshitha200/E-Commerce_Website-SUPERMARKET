@@ -1,1 +1,34 @@
-<p>notification works!</p>
+<ng-container *ngIf="!isPage; else historyPage">
+  <div class="toast-wrap" aria-live="polite">
+    <div *ngIf="notifications.toast$ | async as n" class="toast-card" [ngClass]="n.colour" role="status">
+      <i class="fa-solid" [ngClass]="n.colour=='alert-danger' ? 'fa-circle-exclamation' : n.colour=='alert-info' ? 'fa-circle-info' : 'fa-circle-check'"></i>
+      <span class="msg">{{n.message}}</span>
+      <button type="button" class="close" (click)="notifications.dismiss()" aria-label="Dismiss"><i class="fa-solid fa-xmark"></i></button>
+      <span class="bar"></span>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #historyPage>
+  <section class="page mycontainer">
+    <h1 class="page-title">Notifications</h1>
+    <p class="page-sub">Your recent activity in this session.</p>
+
+    <div class="card-soft list" *ngIf="notifications.history.length; else empty">
+      <div class="item" *ngFor="let n of notifications.history">
+        <span class="ico" [ngClass]="n.colour">
+          <i class="fa-solid" [ngClass]="n.colour=='alert-danger' ? 'fa-circle-exclamation' : n.colour=='alert-info' ? 'fa-circle-info' : 'fa-circle-check'"></i>
+        </span>
+        <span>{{n.message}}</span>
+      </div>
+    </div>
+    <ng-template #empty>
+      <div class="card-soft empty">
+        <i class="fa-regular fa-bell"></i>
+        <h2>You're all caught up</h2>
+        <p>New notifications, like items added to your cart, will show up here.</p>
+        <a routerLink="/all-products" class="btn-fresh">Start shopping</a>
+      </div>
+    </ng-template>
+  </section>
+</ng-template>

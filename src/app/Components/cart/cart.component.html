@@ -1,307 +1,119 @@
-<h4 class="my-3 d-flex align-items-center justify-content-center gap-2">My Shopping Cart <i class="fa-solid fa-cart-shopping mt-1"></i></h4>
-<div class="mycontainer">
-    <div class="row">
-        <aside class="col-lg-9">
-           
-            <div class="">
-                <table class="table  table-shopping-cart">
-                    <thead class="text-muted">
-                        <tr class="small text-uppercase">
-                            <th scope="col">Product</th>
-                            <th scope="col">Quantity</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <ng-container *ngFor="let item of cartItems">
-                            <tr>
-                                <td class="img-box">
-                                    <figure class="itemside align-items-center">
-                                        <div class="aside"><img src="{{item.image}}" class="img-sm"></div>
-                                        <figcaption class="info"> <a href="#" class="title text-dark" data-abc="true">{{item.name}}</a>
-                                            <p class="text-muted small" style="text-transform: capitalize;">{{item.category}} <br> 
-                                                <span style="font-weight: 500;">{{item.quantity}} - <span style="color: #FF512F;">Rs. {{item.price | number : '1.2-2'}}</span></span></p>
-                                        </figcaption>
-                                    </figure>
-                                </td>
-                                <td class="product-details">
-                                    <div class="d-flex quantity"> 
-                                        <ng-container  *ngFor="let quantityNumber of quantityNumbers">
-                                            <ng-container *ngIf="quantityNumber.id == item.id">
-                                                <div class="quantity-buttons">
-                                                    
-                                                    <button class="fa-solid fa-square-minus" (click)="remove(item.id)"  [disabled]="quantityNumber.q == 1"></button>
-                                                    
-                                                        <span class="mx-2">{{quantityNumber.q}}</span>
-                                                    
-                                                    <button class="fa-solid fa-square-plus" (click)="add(item.id)"  [disabled]="quantityNumber.q == 200"></button>
-                                                </div>
-                                            </ng-container>
-                                        </ng-container>
-                                    </div>
-                                    <div>
-                                        <ng-container  *ngFor="let quantityNumber of quantityNumbers">
-                                            <ng-container *ngIf="quantityNumber.id == item.id">
-                                                <div class="price-wrap"> <var class="price">Rs.{{item.price*quantityNumber.q  | number : '1.2-2'}}</var>
-                                                    <!-- <small class="text-muted"> $9.20 each </small> -->
-                                                </div>
-                                            </ng-container>
-                                        </ng-container>
-                                    </div>
-                                    <div>
-                                        <ng-container *ngFor="let quantityNumber of quantityNumbers">
-                                            <button *ngIf="quantityNumber.id == item.id" type="button" class="btn btn-list"  (click)="listed(item.id)"
-                                            [ngClass]="{'btn-checked':quantityNumber.inList}" >
-                                                <i class="fa-solid fa-check"></i>
-                                            </button>  
-                                        </ng-container>
-                                                                            
-                                        <button type="button" class="btn btn-light" data-abc="true" (click)="removeCart(item.id)"> Remove</button> 
-                                
-                                    </div>
-                                </td>
-                                
-                                    
-                                
-                                    
-                                
-                                
-                                    
-                            </tr>
+<section class="page mycontainer">
+  <h1 class="page-title">My cart <span class="n" *ngIf="count">({{count}} {{count === 1 ? 'item' : 'items'}})</span></h1>
+  <p class="page-sub">Review your items before checkout.</p>
 
-                        </ng-container>
-                        
-                    </tbody>
-                </table>
-            </div>
-            
-        </aside>
-        <aside class="col-lg-3">
-            <div class="card mb-3">
-                <div class="card-body">
-                    <form>
-                        <div class="form-group"> 
-                            <label>Have coupon?</label>
-                            <div class="input-group d-flex align-items-center mt-1"> 
-                                <input type="text" class="form-control coupon" name="coupon" placeholder="Coupon code"> 
-                                <button class="btn btn-primary btn-apply  coupon">Enter</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-body">
-                    <dl class="dlist-align">
-                        <dt>Number of Items:</dt>
-                        <dd class="text-right ml-3">&nbsp; {{fullOrderDetails.itemCount}}</dd>
-                    </dl>
-                    <dl class="dlist-align">
-                        <dt>Total price:</dt>
-                        <dd class="text-right ml-3">&nbsp; Rs. {{fullOrderDetails.totalPrice | number : '1.2-2'}}</dd>
-                    </dl>
-                    <dl class="dlist-align">
-                        <dt>Discount:</dt>
-                        <dd class="text-right text-danger ml-3">&nbsp; {{fullOrderDetails.discount}}%</dd>
-                    </dl>
-                    <dl class="dlist-align">
-                        <dt>New Price:</dt>
-                        <dd class="text-right text-danger b ml-3"><strong>&nbsp; Rs. {{fullOrderDetails.discountedPrice | number : '1.2-2'}}</strong></dd>
-                    </dl>
+  <div class="layout" *ngIf="items.length; else empty">
+    <div class="lines">
+      <div class="ship card-soft" *ngIf="toFreeDelivery > 0; else freeShip">
+        <i class="fa-solid fa-truck-fast"></i>
+        <span>Add <b>Rs. {{toFreeDelivery | number:'1.2-2'}}</b> more for free delivery.</span>
+      </div>
+      <ng-template #freeShip>
+        <div class="ship ok card-soft"><i class="fa-solid fa-circle-check"></i><span>You've unlocked <b>free delivery</b>!</span></div>
+      </ng-template>
 
-                    <hr> 
-                    <a href="#" class="btn btn-out btn-purchase  btn-main" data-abc="true" data-bs-toggle="modal" data-bs-target="#exampleModal"> Make Purchase </a>
-                    <a href="#" class="btn btn-out btn-shopping  btn-main mt-2" data-abc="true">Continue Shopping</a>
-                </div>
-            </div>
-        </aside>
+      <article class="line card-soft" *ngFor="let item of items">
+        <a [routerLink]="['/product-details', item.product.name, item.product.id]" class="pic">
+          <img [src]="item.product.image" [alt]="item.product.name" loading="lazy">
+        </a>
+        <div class="meta">
+          <a [routerLink]="['/product-details', item.product.name, item.product.id]" class="title">{{item.product.name}}</a>
+          <span class="sub">{{item.product.quantity}} · Rs. {{item.product.price | number:'1.2-2'}} each</span>
+        </div>
+        <div class="qty" role="group" [attr.aria-label]="'Quantity of ' + item.product.name">
+          <button type="button" (click)="dec(item)" [disabled]="item.qty <= 1" aria-label="Decrease quantity"><i class="fa-solid fa-minus"></i></button>
+          <span>{{item.qty}}</span>
+          <button type="button" (click)="inc(item)" [disabled]="item.qty >= 99" aria-label="Increase quantity"><i class="fa-solid fa-plus"></i></button>
+        </div>
+        <div class="line-total">Rs. {{item.product.price * item.qty | number:'1.2-2'}}</div>
+        <button type="button" class="del" (click)="remove(item)" aria-label="Remove item"><i class="fa-regular fa-trash-can"></i></button>
+      </article>
     </div>
-</div>
 
+    <aside class="summary card-soft">
+      <h2>Order summary</h2>
 
-<!-- <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-  <div class="offcanvas-header">
-    <h5 id="offcanvasRightLabel">Buy Product</h5>
-    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      <div class="coupon">
+        <input #coupon type="text" placeholder="Coupon code" aria-label="Coupon code" (keydown.enter)="applyCoupon(coupon.value)">
+        <button type="button" class="btn-ghost" (click)="applyCoupon(coupon.value)">Apply</button>
+      </div>
+      <small class="hint">Try <b>FRESH10</b></small>
+
+      <dl>
+        <div><dt>Subtotal</dt><dd>Rs. {{subtotal | number:'1.2-2'}}</dd></div>
+        <div class="neg"><dt>Discount ({{discountPct}}%)</dt><dd>- Rs. {{discount | number:'1.2-2'}}</dd></div>
+        <div><dt>Delivery</dt><dd>{{delivery ? 'Rs. ' + (delivery | number:'1.2-2') : 'Free'}}</dd></div>
+        <div class="total"><dt>Total</dt><dd>Rs. {{total | number:'1.2-2'}}</dd></div>
+      </dl>
+
+      <button type="button" class="btn-fresh btn-block" data-bs-toggle="modal" data-bs-target="#checkoutModal" (click)="openCheckout()">
+        <i class="fa-solid fa-lock"></i> Checkout
+      </button>
+      <a routerLink="/all-products" class="btn-ghost btn-block cont">Continue shopping</a>
+    </aside>
   </div>
-  <div class="offcanvas-body">
-    Available Soon....
-  </div>
-</div> -->
 
-<!-- Buy -->
+  <ng-template #empty>
+    <div class="card-soft empty" *ngIf="!paid">
+      <i class="fa-solid fa-basket-shopping"></i>
+      <h2>Your cart is empty</h2>
+      <p>Looks like you haven't added anything yet.</p>
+      <a routerLink="/all-products" class="btn-fresh">Start shopping</a>
+    </div>
+    <div class="card-soft empty" *ngIf="paid">
+      <i class="fa-solid fa-circle-check"></i>
+      <h2>Order placed!</h2>
+      <p>Thanks for shopping with Freshora. Your groceries are on the way.</p>
+      <a routerLink="/" class="btn-fresh">Back to home</a>
+    </div>
+  </ng-template>
+</section>
 
-<!-- Button trigger modal -->
+<!-- Checkout modal -->
+<div class="modal fade" id="checkoutModal" tabindex="-1" aria-labelledby="checkoutLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header border-0 pb-0">
+        <h2 class="modal-title fs-5" id="checkoutLabel">{{paid ? 'Payment complete' : 'Secure payment'}}</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body pt-2">
+        <ng-container *ngIf="!paid; else done">
+          <div class="methods" role="tablist">
+            <button type="button" role="tab" [class.on]="method==='card'" (click)="method='card'"><i class="fa-regular fa-credit-card"></i> Card</button>
+            <button type="button" role="tab" [class.on]="method==='paypal'" (click)="method='paypal'"><i class="fa-brands fa-paypal"></i> PayPal</button>
+          </div>
 
-  
-  <!-- Modal -->
-  <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Pay Online</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <div class="tabs mt-3">
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                    <li class="nav-item" role="presentation"> 
-                        <a class="nav-link active" id="visa-tab" data-toggle="tab" (click)="visaClick()" #visa
-                            role="tab" aria-controls="visa" aria-selected="true">
-                            <img src="https://i.imgur.com/sB4jftM.png" width="80"> 
-                        </a> 
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" id="paypal-tab" data-toggle="tab" (click)="paypalClick()" #paypal
-                            role="tab" aria-controls="paypal" aria-selected="false"> 
-                            <img src="https://i.imgur.com/yK7EDD1.png" width="80"> 
-                        </a> 
-                    </li>
-                </ul>
-                <!-- <div class="main-container" #success>
-                    <div class="check-container">
-        
-                        <div class="check-background">
-                            <svg viewBox="0 0 65 51" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M7 25L27.3077 44L58.5 7" stroke="white" stroke-width="13" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                        </div>
-                        <div class="check-shadow"></div>
-                    </div>
-                    <h2 class="suc-message">Payment Successful!</h2>
-                </div> -->
-                <div class="tab-content" id="myTabContent" >
-                    <div role="tabpanel" aria-labelledby="visa-tab" #visaModel>
-                        <div class="mt-4 mx-4">
-                            <div>
-                                <div class="text-center">
-                                    <h5>Credit card</h5>
-                                </div>
-                                <div class="form mt-3">
-                                    <div class="inputbox">
-                                        <input type="text" name="name" class="form-control" required="required"> <span>Cardholder Name</span> </div>
-                                    <div class="inputbox">
-                                        <input type="text" name="name" min="1" max="999" class="form-control" required="required">
-                                        <span>Card Number</span>
-                                        <i class="fa fa-eye"></i>
-                                    </div>
-                                    <div class="d-flex flex-row">
-                                        <div class="inputbox">
-                                            <input type="text" name="name" min="1" max="999" class="form-control" required="required">
-                                            <span>Expiration Date</span>
-                                        </div>
-                                    </div>
-                                    <div class="inputbox"> 
-                                        <input type="text" name="name" min="1" max="999" class="form-control" required="required"> 
-                                        <span>CVV</span> 
-                                    </div>
-                                    <div class="px-3 pay w-100">
-                                        <button class="btn btn-success btn-block w-100" (click)="pay(payButton1,1)" #payButton1>
-                                            <span #m1>Confirm Payment</span>
-                                            <span class="text-white succesbtn align-items-center justify-content-center gap-2 w-100" #m2>
-                                                <i class="fa-regular fa-circle-check"></i> Payment Success
-                                            </span>
-                                        </button> 
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="sprin mx-5" #sprin1>
-                                <div class="spinner-border" role="status">
-                                    <span class="visually-hidden">Loading...</span>
-                                </div>
-                            </div>  
-                        </div>
-                    </div>
-                    <div class="fade w-100" id="paypal" role="tabpanel" aria-labelledby="paypal-tab"  #paypalModel>
-                        <div class="px-5 mt-4 w-100">
-                            <div class="text-center" >
-                                <h5>Paypal</h5>
-                            </div>
-                            <div class="inputbox w-100 mt-4">
-                                <input type="text" name="name" class="form-control w-100" required="required"> 
-                                <span>Paypal Email Address</span>
-                            </div>
-                            <div class="pay  w-100"> 
+          <form (submit)="$event.preventDefault(); pay()" autocomplete="off">
+            <ng-container *ngIf="method==='card'; else pp">
+              <div class="form-field"><label for="cn">Cardholder name</label><input id="cn" type="text" required placeholder="Name on card"></div>
+              <div class="form-field"><label for="cc">Card number</label><input id="cc" type="text" inputmode="numeric" required maxlength="19" placeholder="1234 5678 9012 3456"></div>
+              <div class="row g-3">
+                <div class="col-6 form-field"><label for="ce">Expiry</label><input id="ce" type="text" required maxlength="5" placeholder="MM/YY"></div>
+                <div class="col-6 form-field"><label for="cv">CVV</label><input id="cv" type="password" inputmode="numeric" required maxlength="4" placeholder="•••"></div>
+              </div>
+            </ng-container>
+            <ng-template #pp>
+              <div class="form-field"><label for="pe">PayPal email</label><input id="pe" type="email" required placeholder="you@example.com"></div>
+            </ng-template>
 
-                                <button class="btn btn-success w-100" (click)="pay(payButton2,2)" #payButton2>
-                                    <span #m11>Confirm Payment</span>
-                                    <span class="text-white succesbtn align-items-center justify-content-center gap-2 w-100" #m22>
-                                        <i class="fa-regular fa-circle-check"></i> Payment Success
-                                    </span>
-                                </button> 
-                             
-                                
+            <button type="submit" class="btn-fresh btn-block" [disabled]="paying">
+              <span *ngIf="!paying">Pay Rs. {{total | number:'1.2-2'}}</span>
+              <span *ngIf="paying"><span class="spinner-border spinner-border-sm me-2" aria-hidden="true"></span>Processing...</span>
+            </button>
+            <p class="demo"><i class="fa-solid fa-circle-info"></i> Demo checkout - no real payment is made.</p>
+          </form>
+        </ng-container>
 
-                                <div class="sprin" #sprin2>
-                                    <div class="spinner-border" role="status">
-                                        <span class="visually-hidden">Loading...</span>
-                                    </div>
-                                </div>   
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <ng-template #done>
+          <div class="success">
+            <i class="fa-solid fa-circle-check"></i>
+            <h3>Payment successful</h3>
+            <p>Your order has been placed.</p>
+            <button type="button" class="btn-fresh" data-bs-dismiss="modal">Done</button>
+          </div>
+        </ng-template>
       </div>
     </div>
   </div>
-
-
-<!-- <button type="button" class="btn btn-primary launch" data-toggle="modal" data-target="#staticBackdrop"> <i
-        class="fa fa-rocket"></i> Pay Now
-</button> -->
-<!-- Modal -->
-<!-- <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-body">
-                <div class="text-right"> <i class="fa fa-close close" data-dismiss="modal"></i> </div>
-                <div class="tabs mt-3">
-                    <ul class="nav nav-tabs" id="myTab" role="tablist">
-                        <li class="nav-item" role="presentation"> <a class="nav-link active" id="visa-tab"
-                                data-toggle="tab" href="#visa" role="tab" aria-controls="visa" aria-selected="true">
-                                <img src="https://i.imgur.com/sB4jftM.png" width="80"> </a> </li>
-                        <li class="nav-item" role="presentation"> <a class="nav-link" id="paypal-tab" data-toggle="tab"
-                                href="#paypal" role="tab" aria-controls="paypal" aria-selected="false"> <img
-                                    src="https://i.imgur.com/yK7EDD1.png" width="80"> </a> </li>
-                    </ul>
-                    <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade show active" id="visa" role="tabpanel" aria-labelledby="visa-tab">
-                            <div class="mt-4 mx-4">
-                                <div class="text-center">
-                                    <h5>Credit card</h5>
-                                </div>
-                                <div class="form mt-3">
-                                    <div class="inputbox"> <input type="text" name="name" class="form-control"
-                                            required="required"> <span>Cardholder Name</span> </div>
-                                    <div class="inputbox"> <input type="text" name="name" min="1" max="999"
-                                            class="form-control" required="required"> <span>Card Number</span> <i
-                                            class="fa fa-eye"></i> </div>
-                                    <div class="d-flex flex-row">
-                                        <div class="inputbox"> <input type="text" name="name" min="1" max="999"
-                                                class="form-control" required="required"> <span>Expiration Date</span>
-                                        </div>
-                                        <div class="inputbox"> <input type="text" name="name" min="1" max="999"
-                                                class="form-control" required="required"> <span>CVV</span> </div>
-                                    </div>
-                                    <div class="px-5 pay"> <button class="btn btn-success btn-block">Add card</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="paypal" role="tabpanel" aria-labelledby="paypal-tab">
-                            <div class="px-5 mt-5">
-                                <div class="inputbox"> <input type="text" name="name" class="form-control"
-                                        required="required"> <span>Paypal Email Address</span> </div>
-                                <div class="pay px-5"> <button class="btn btn-primary btn-block">Add paypal</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> -->
+</div>

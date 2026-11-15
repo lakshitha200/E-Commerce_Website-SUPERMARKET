@@ -1,0 +1,19 @@
+<article class="pcard">
+  <a [routerLink]="['/product-details', product.name, product.id]" class="card-link" [attr.aria-label]="'View ' + product.name">
+    <span class="tag">{{product.quantity}}</span>
+    <div class="thumb">
+      <img [src]="product.image" [alt]="product.name" loading="lazy">
+    </div>
+    <div class="body">
+      <h3 class="name">{{product.name}}</h3>
+    </div>
+  </a>
+  <div class="foot">
+    <span class="price"><small>Rs.</small>{{product.price | number:'1.2-2'}}</span>
+    <button type="button" class="add-btn" [class.added]="cart.has(product.id)"
+            (click)="addToCart($event)" [attr.aria-label]="cart.has(product.id) ? 'In cart' : 'Add ' + product.name + ' to cart'"
+            [title]="cart.has(product.id) ? 'Already in cart' : 'Add to cart'">
+      <i class="fa-solid" [ngClass]="cart.has(product.id) ? 'fa-check' : 'fa-plus'"></i>
+    </button>
+  </div>
+</article>

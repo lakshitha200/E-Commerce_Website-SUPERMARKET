@@ -1,1 +1,21 @@
-<p>bill-payments works!</p>
+<section class="page mycontainer">
+  <h1 class="page-title">Bill payments</h1>
+  <p class="page-sub">Pay your utility bills in a few taps.</p>
+
+  <div class="providers" role="radiogroup" aria-label="Bill type">
+    <button type="button" *ngFor="let p of providers" class="prov" role="radio"
+            [class.on]="p === selected" [attr.aria-checked]="p === selected" (click)="selected = p">
+      <span class="ico"><i class="fa-solid" [ngClass]="p.icon"></i></span>
+      {{p.label}}
+    </button>
+  </div>
+
+  <form #f class="card-soft form" (submit)="pay($event, f, acc.value, amt.value)">
+    <h2>Pay {{selected.label}} bill</h2>
+    <div class="form-field"><label for="acc">Account / reference number</label><input #acc id="acc" type="text" placeholder="e.g. 0123456789" required></div>
+    <div class="form-field"><label for="amt">Amount (Rs.)</label><input #amt id="amt" type="number" min="1" step="0.01" placeholder="0.00" required></div>
+    <div class="error" *ngIf="error" role="alert">{{error}}</div>
+    <button type="submit" class="btn-fresh btn-block"><i class="fa-solid fa-lock"></i> Pay now</button>
+    <p class="demo"><i class="fa-solid fa-circle-info"></i> Demo only - no real payment is made.</p>
+  </form>
+</section>

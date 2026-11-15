@@ -1,0 +1,12 @@
+.providers { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; margin-bottom: 24px; }
+.prov { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 18px 8px; background: #fff; border: 1.5px solid var(--line); border-radius: var(--radius); font-weight: 600; cursor: pointer; transition: border-color .2s, box-shadow .2s, transform .2s var(--ease); }
+.prov:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+.prov.on { border-color: var(--green-500); background: var(--green-50); color: var(--green-700); }
+.ico { width: 46px; height: 46px; border-radius: 14px; background: var(--green-100); color: var(--green-600); display: grid; place-items: center; font-size: 1.1rem; }
+.prov.on .ico { background: var(--green-600); color: #fff; }
+.form { max-width: 520px; padding: 28px; }
+.form h2 { font-size: 1.2rem; margin: 0 0 20px; }
+.error { color: #c62828; font-size: .85rem; margin-bottom: 12px; }
+.demo { text-align: center; color: var(--muted); font-size: .8rem; margin: 14px 0 0; }
+@media (max-width: 767px) { .providers { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 575px) { .form { padding: 20px; } }

@@ -1,87 +1,54 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { ProductService } from '../../Services/Product.service';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CartService } from '../../Services/Cart.service';
-import { NotificationService } from '../../Services/Notification.service';
-import { Notification } from '../../Models/Notification';
+import { combineLatest } from 'rxjs';
+import { ProductService } from '../../Services/Product.service';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrl: './products.component.css'
 })
-export class ProductsComponent implements OnInit{
+export class ProductsComponent implements OnInit {
 
-  @ViewChild('notificationMessage')
-  notificationMessage!: ElementRef;
+  constructor(public productService:ProductService, private activeRoute:ActivatedRoute){}
 
-  constructor(private productService:ProductService, private notificationService:NotificationService,
-    private activeRoute:ActivatedRoute, private cartService:CartService){}
+  category: string | null = null;
+  query = '';
+  sort: 'default' | 'low' | 'high' | 'name' = 'default';
+  products: any[] = [];
 
-
-  products!: any[];
-  category!: string | null;
-  idList:any[] = [];
-  cartItems:any[] =[];
-  notification!: Notification;
-  notificationToggel !: boolean;
+  get title(): string {
+    if(this.query){ return 'Results for "' + this.query + '"'; }
+    const c = this.productService.categories.find(x => x.key === this.category);
+    return c ? c.label : 'All products';
+  }
 
   ngOnInit(): void {
-
-    this.activeRoute.paramMap.subscribe(data=>{
-      this.category = data.get('category');
-      this.filterByCategories(this.category);
+    combineLatest([this.activeRoute.paramMap, this.activeRoute.queryParamMap]).subscribe(([params, query]) => {
+      this.category = params.get('category');
+      this.query = (query.get('q') ?? '').trim();
+      this.refresh();
     });
-
-
-    this.idList = this.cartService.getAllFromLocalStorage();
-    console.log(this.idList)
-
-   
-    console.log(this.idList)
-    // this.productService.products.filter(select=>{
-    //   if(this.idList.includes(select.id)){
-    //     this.cartItems.push(select)
-    //   }
-    // })
-    // console.log(this.cartItems)
   }
 
-  filterByCategories(category:any){
-    if(category == 'vegetables'){
-      this.products = this.productService.vegetables;
-    }else if(category == 'fruits'){
-      this.products = this.productService.fruits;
-    }else if(category == 'beverages'){
-      this.products = this.productService.beverages;
-    }else if(category == 'fishAndMeat'){
-      this.products = this.productService.fishAndMeat;
-    }else if(category == 'household'){
-      this.products = this.productService.household;
+  setSort(value: string){
+    this.sort = value as typeof this.sort;
+    this.refresh();
+  }
+
+  private refresh(){
+    let list = [...this.productService.getByCategory(this.category)];
+
+    if(this.query){
+      const q = this.query.toLowerCase();
+      list = list.filter(p => p.name.toLowerCase().includes(q));
     }
-    
-    else{
-      this.products = this.productService.products;
+
+    switch(this.sort){
+      case 'low':  list.sort((a, b) => a.price - b.price); break;
+      case 'high': list.sort((a, b) => b.price - a.price); break;
+      case 'name': list.sort((a, b) => a.name.localeCompare(b.name)); break;
     }
-  }
-
-  addToCart(id:number){
-    this.cartService.addToLocalStorage(id);
-    this.addToCartNotification(id);
-  }
-  
-  addToCartNotification(id: number){
-    this.notification  = this.notificationService.addToCartNotification(id);
-    this.notification?this.notificationToggel = true:this.notificationToggel=false;
-
-    setTimeout((set: any)=>{
-      this.notificationToggel = false;
-      window.location.reload()
-    },5000)
-  }
-
-  closeNotification(){
-    this.notificationToggel = false;
-    window.location.reload()
+    this.products = list;
   }
 }
