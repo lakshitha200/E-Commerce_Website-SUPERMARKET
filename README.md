@@ -1,17 +1,99 @@
-# SuperMarket
+# Freshora - Supermarket E-Commerce Website
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.6.
+Freshora is a modern, responsive online supermarket front end built with **Angular 17** and **Bootstrap 5**. Shoppers can browse fresh groceries by category, search and sort products, manage a cart with coupons, and pay utility bills - all in one smooth, mobile-friendly interface.
 
-- Designed and developed a dynamic, responsive front-end for a supermarket e-commerce site using Angular and Bootstrap. 
-- Enhanced user experience with intuitive, user-friendly features.
-- Watch my website - (https://super-market-78413.web.app/)
+Live site: https://super-market-78413.web.app/ (deployed with Firebase Hosting; redeploy to publish the latest design)
 
+## Screenshots
 
-![Screenshot (536)](https://github.com/user-attachments/assets/4a745e82-9e7b-4354-ad36-fd3ff1c4ee4d)
+**Home** - hero, offers carousel, categories, best sellers and promotions
 
-![Screenshot (537)](https://github.com/user-attachments/assets/e6a32d96-0272-4be2-a86a-beaf59230759)
-![Screenshot (538)](https://github.com/user-attachments/assets/53840169-0efe-4d81-8304-945b8af029f6)
-![Screenshot (541)](https://github.com/user-attachments/assets/bd7e848d-953c-44dc-ae6c-5dc1ab112ee9)
-![Screenshot (539)](https://github.com/user-attachments/assets/ffa742ec-d774-4ff2-b143-2beb8a2572de)
-![Screenshot (540)](https://github.com/user-attachments/assets/f68d6872-49ad-4daf-ac16-e177acd57d5e)
-![Screenshot (542)](https://github.com/user-attachments/assets/8f908bde-a0aa-44c6-9bb6-a5d0d31bf6db)
+![Home page](docs/screenshots/01-home.png)
+
+**Products** - category page with sorting and search
+
+![Products page](docs/screenshots/02-products.png)
+
+**Product details** - price, pack size, add to cart and related items
+
+![Product details page](docs/screenshots/03-product-details.png)
+
+**Bill payments** - pay electricity, water, mobile and other bills
+
+![Bill payments page](docs/screenshots/04-bill-payment.png)
+
+**Sign in** - account access with a demo login
+
+![Sign in page](docs/screenshots/05-sign-in.png)
+
+## Features
+
+- Responsive, modern design (desktop, tablet and phone) with a custom Freshora logo
+- Home page with a hero section, auto-playing offers carousel (pause on hover, arrows, dots, swipe), category tiles and best sellers
+- Product catalogue across five categories: Vegetables, Fruits, Fish & Meat, Beverages and Household
+- Search, category filters and sorting (price and name)
+- Product details with related products
+- Shopping cart saved in the browser: quantity controls, free-delivery progress, coupon codes (`FRESH10`, `WELCOME5`) and a demo checkout
+- Bill payments, contact form, sign in / sign up, profile and notifications pages
+- Toast notifications for cart and account actions
+- Server-side rendering and prerendering with Angular SSR
+
+## Pages
+
+| Route | Page |
+| --- | --- |
+| `/` | Home |
+| `/all-products` and `/all-products/:category` | Products |
+| `/product-details/:name/:id` | Product details |
+| `/myShopping-cart` | Cart and checkout |
+| `/bill-payment` | Bill payments |
+| `/contact` | Contact us |
+| `/sign-in` and `/sign-up` | Account |
+| `/profile` | Profile (requires sign in) |
+| `/notifications` | Notifications |
+
+## Tech stack
+
+- Angular 17 (modules, router, SSR / prerendering)
+- Bootstrap 5.3 and Font Awesome 6
+- RxJS, TypeScript
+- Firebase Hosting
+
+## Getting started
+
+Requirements: Node.js 18 or newer and npm.
+
+```bash
+npm install
+npm start          # dev server at http://localhost:4200
+npm run build      # production build in dist/super-market
+npm test           # unit tests (Karma + Jasmine)
+```
+
+## Project structure
+
+```
+src/
+  app/
+    Components/    pages and UI (header, footer, home, products, cart, ...)
+    Services/      cart, products, auth and notification services
+    Models/        data models
+  assets/          logo and images
+docs/screenshots/  README screenshots
+```
+
+## Demo notes
+
+This is a front-end project with no backend yet:
+
+- The product list is stored in `Product.service.ts`.
+- Sign in uses a demo account (`vipuser` / `vip123`); sign up, contact, bill payment and checkout only simulate success.
+- The cart is saved in the browser's `localStorage`.
+
+## Credits
+
+- Hero and promotion photos from [Unsplash](https://unsplash.com).
+- Product images are linked from their original online sources.
+- Built with [Angular CLI](https://github.com/angular/angular-cli) 17.3.6.
+
+Made by Lakshitha Fernando.
