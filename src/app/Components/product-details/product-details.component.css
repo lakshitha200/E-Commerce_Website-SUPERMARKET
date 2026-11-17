@@ -1,156 +1,22 @@
-.mycontainer{
-    margin: 20px 5%;
-}
-.product-details{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-}
-/* .product-image{
-  width: 50%;
-} */
+.crumbs { display: flex; align-items: center; gap: 8px; font-size: .85rem; color: var(--muted); margin-bottom: 14px; flex-wrap: wrap; }
+.crumbs i { font-size: .6rem; }
+.crumbs a:hover { color: var(--green-700); }
+.crumbs span { color: var(--ink); font-weight: 600; }
 
-.product-image img{
-    width: 400px;
-    align-items: center;
-}
-
-
-
-.buy-cart{
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-/* CSS */
-.cart {
-  background-color: transparent;
-  border: 2px solid #1A1A1A;
-  border-radius: 15px;
-  color: #3B3B3B;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 14px;
-  padding: 4px 14px;
-  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
-  touch-action: manipulation;
-  width: 100%;
-  will-change: transform;
-}
-
-.cart:hover {
-  color: #fff;
-  background-color: #1A1A1A;
-  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
-  transform: translateY(-2px);
-}
-
-.cart:active {
-  box-shadow: none;
-  transform: translateY(0);
-}
-
-
-
-
-/* CSS */
-.buy {
-  background-image: linear-gradient(to Right,#FF512F ,#F09819);
-  border-radius: 6px;
-  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
-  color: #FFFFFF;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: 500;
-  outline: 0;
-  padding: 5px 14px;
-  user-select: none;
-  touch-action: manipulation;
-  border: 2px solid ;
-}
-
-.buy:hover,
-.buy:active {
-    background-image: linear-gradient(to Right,#fff ,#fff);
-  background-position: 0 0;
-  color: #FF512F;
-  border: 2px solid #FF512F;
-}
-
-.buy:active {
-  opacity: .5;
-}
-
-/* alert */
-.alert{
-  position: fixed;
-  top: 150px;
-  right: 0;
-  z-index: 1000;
-  width: 0;
-  visibility: hidden;
-  padding-bottom: 0;
-  padding-left: 0;
-}
-.bar{
-  width: 100%;
-  height: 5px;
-  animation: anim2 5s linear forwards;
-  margin-top: 8px;
-}
-
-@keyframes anim2{
-  100%{
-      width: 0;
-  }
-}
- 
-.open-notification{
-  visibility: visible;
-  width: 50%;
-}
-.close-notification{
-  visibility: hidden;
-}
-
-.disabled{
-  background-color: rgb(173, 173, 173);
-  border: 2px solid #9e9e9e;
-  border-radius: 15px;
-  color: #ffffff;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 14px;
-  padding: 4px 14px;
-  width: 100%;
- 
-}
-
-@media screen and (max-width:767px) {
-
-  .product-details{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 3px;
-}
-.product-image img{
-  width: 100%;
-  align-items: center;
-}
-  .alert{
-    position: fixed;
-    top: 120px;
-  }
-  .open-notification{
-    width: 80% !important;
-  }
-}
-
-@media screen and (max-width:725px) {
-   
-
-}
-
-
-
+.detail { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding: 32px; }
+.media { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); display: grid; place-items: center; padding: 24px; aspect-ratio: 1 / 1; }
+.media img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.info { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; justify-content: center; }
+.cat { background: var(--green-100); color: var(--green-700); font-size: .75rem; font-weight: 700; text-transform: capitalize; padding: 4px 12px; border-radius: 999px; }
+h1 { font-size: clamp(1.5rem, 3vw, 2.2rem); margin: 0; }
+.size { color: var(--muted); font-weight: 500; }
+.price { font-size: 2rem; font-weight: 800; color: var(--green-700); margin: 4px 0; }
+.price small { font-size: 1rem; color: var(--muted); font-weight: 600; }
+.perks { list-style: none; padding: 0; margin: 4px 0 8px; display: flex; flex-wrap: wrap; gap: 8px 18px; color: #3b5246; font-size: .9rem; }
+.perks i { color: var(--green-500); margin-right: 6px; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+.related { margin-top: 48px; }
+.nf { text-align: center; padding: 56px 24px; }
+.nf > i { font-size: 2.4rem; color: var(--green-500); margin-bottom: 12px; }
+.nf p { color: var(--muted); margin-bottom: 20px; }
+@media (max-width: 767px) { .detail { grid-template-columns: 1fr; gap: 24px; padding: 20px; } }

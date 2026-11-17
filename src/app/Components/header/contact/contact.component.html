@@ -1,38 +1,23 @@
-<div class="mycontainer">
-	<div class="row">
-			<h3 class="text-center">Contact us</h3>
-	</div>
-	<div class="row">
-			<h4 style="text-align:center">We'd love to hear from you!</h4>
-	</div>
-	<div class="row input-container">
-			<div class="col-xs-12">
-				<div class="styled-input wide">
-					<input type="text" required />
-					<label>Name</label> 
-				</div>
-			</div>
-			<div class="col-md-6 col-sm-12">
-				<div class="styled-input">
-					<input type="text" required />
-					<label>Email</label> 
-				</div>
-			</div>
-			<div class="col-md-6 col-sm-12">
-				<div class="styled-input" style="float:right;">
-					<input type="text" required />
-					<label>Phone Number</label> 
-				</div>
-			</div>
-			<div class="col-xs-12">
-				<div class="styled-input wide">
-					<textarea required></textarea>
-					<label>Message</label>
-				</div>
-			</div>
-			<div class="col-xs-12">
-				<div class="btn-lrg submit-btn">Send Message</div>
-			</div>
-	</div>
-</div>
+<section class="page mycontainer">
+  <h1 class="page-title">Contact us</h1>
+  <p class="page-sub">We'd love to hear from you. Our team usually replies within one business day.</p>
 
+  <div class="layout">
+    <div class="info">
+      <div class="card-soft item"><span class="ico"><i class="fa-solid fa-location-dot"></i></span><div><b>Visit us</b><span>Moratuwa, Sri Lanka</span></div></div>
+      <div class="card-soft item"><span class="ico"><i class="fa-solid fa-phone"></i></span><div><b>Call us</b><span>+94 11 234 5678</span></div></div>
+      <div class="card-soft item"><span class="ico"><i class="fa-regular fa-envelope"></i></span><div><b>Email us</b><span>hello&#64;freshora.lk</span></div></div>
+      <div class="card-soft item"><span class="ico"><i class="fa-regular fa-clock"></i></span><div><b>Hours</b><span>Daily, 7:00 AM - 10:00 PM</span></div></div>
+    </div>
+
+    <form #f class="card-soft form" (submit)="send($event, f)">
+      <div class="form-field"><label for="name">Name</label><input id="name" type="text" required autocomplete="name"></div>
+      <div class="two">
+        <div class="form-field"><label for="email">Email</label><input id="email" type="email" required autocomplete="email"></div>
+        <div class="form-field"><label for="phone">Phone</label><input id="phone" type="tel" autocomplete="tel"></div>
+      </div>
+      <div class="form-field"><label for="msg">Message</label><textarea id="msg" required></textarea></div>
+      <button type="submit" class="btn-fresh"><i class="fa-regular fa-paper-plane"></i> Send message</button>
+    </form>
+  </div>
+</section>
