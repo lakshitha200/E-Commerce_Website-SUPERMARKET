@@ -2,7 +2,7 @@
 
 Freshora is a modern, responsive online supermarket front end built with **Angular 17** and **Bootstrap 5**. Shoppers can browse fresh groceries by category, search and sort products, manage a cart with coupons, and pay utility bills - all in one smooth, mobile-friendly interface.
 
-Live site: https://super-market-78413.web.app/ (deployed with Firebase Hosting; redeploy to publish the latest design)
+Live site: https://freshora-store-aab49.web.app/ (deployed with Firebase Hosting)
 
 ## Screenshots
 

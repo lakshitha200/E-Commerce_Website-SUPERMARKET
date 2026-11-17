@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "freshora-store-aab49",
     "public": "dist/super-market/browser",
     "ignore": [
       "firebase.json",
