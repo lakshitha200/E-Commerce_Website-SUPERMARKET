@@ -11,7 +11,7 @@ import { NotificationService } from '../../Services/Notification.service';
 export class ProfileComponent {
   constructor(public auth:AuthService, private router:Router, private notifications:NotificationService){}
 
-  get user(){ return this.auth.user; }
+  get user(){ return this.auth.currentUser!; }
 
   logout(){
     this.auth.logOut();

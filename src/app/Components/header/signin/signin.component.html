@@ -2,6 +2,7 @@
   <div class="card-soft center-card">
     <h1>Welcome back</h1>
     <p class="lead">Sign in to your Freshora account.</p>
+    <div class="notice" *ngIf="returnUrl"><i class="fa-solid fa-lock"></i> Please sign in to continue.</div>
 
     <form (submit)="submit($event, u.value, p.value)">
       <div class="form-field">
@@ -24,9 +25,9 @@
         <a href="#" class="link">Forgot password?</a>
       </div>
 
-      <button type="submit" class="btn-fresh btn-block">Sign in</button>
+      <button type="submit" class="btn-fresh btn-block" [disabled]="busy">{{busy ? 'Signing in...' : 'Sign in'}}</button>
       <p class="demo"><i class="fa-solid fa-circle-info"></i> Demo account: <b>vipuser</b> / <b>vip123</b></p>
-      <p class="alt">Not a member? <a routerLink="/sign-up">Create an account</a></p>
+      <p class="alt">Not a member? <a routerLink="/sign-up" [queryParams]="returnUrl ? {returnUrl: returnUrl} : null">Create an account</a></p>
     </form>
   </div>
 </section>

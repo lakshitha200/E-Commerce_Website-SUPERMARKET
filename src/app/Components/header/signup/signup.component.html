@@ -16,8 +16,8 @@
 
       <div class="error" *ngIf="error" role="alert">{{error}}</div>
 
-      <button type="submit" class="btn-fresh btn-block">Create account</button>
-      <p class="alt">Already a member? <a routerLink="/sign-in">Sign in</a></p>
+      <button type="submit" class="btn-fresh btn-block" [disabled]="busy">{{busy ? 'Creating account...' : 'Create account'}}</button>
+      <p class="alt">Already a member? <a routerLink="/sign-in" [queryParams]="returnUrl ? {returnUrl: returnUrl} : null">Sign in</a></p>
     </form>
   </div>
 </section>

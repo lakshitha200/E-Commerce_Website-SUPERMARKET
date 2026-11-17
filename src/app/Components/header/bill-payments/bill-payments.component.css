@@ -10,3 +10,6 @@
 .demo { text-align: center; color: var(--muted); font-size: .8rem; margin: 14px 0 0; }
 @media (max-width: 767px) { .providers { grid-template-columns: repeat(3, 1fr); } }
 @media (max-width: 575px) { .form { padding: 20px; } }
+.need { text-align: center; color: var(--muted); font-size: .82rem; margin: 10px 0 0; }
+.need a { color: var(--green-700); font-weight: 600; }
+.need a:hover { text-decoration: underline; }

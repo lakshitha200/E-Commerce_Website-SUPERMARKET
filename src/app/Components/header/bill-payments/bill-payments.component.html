@@ -15,7 +15,11 @@
     <div class="form-field"><label for="acc">Account / reference number</label><input #acc id="acc" type="text" placeholder="e.g. 0123456789" required></div>
     <div class="form-field"><label for="amt">Amount (Rs.)</label><input #amt id="amt" type="number" min="1" step="0.01" placeholder="0.00" required></div>
     <div class="error" *ngIf="error" role="alert">{{error}}</div>
-    <button type="submit" class="btn-fresh btn-block"><i class="fa-solid fa-lock"></i> Pay now</button>
+    <button *ngIf="auth.isLogged$ | async; else guestPay" type="submit" class="btn-fresh btn-block"><i class="fa-solid fa-lock"></i> Pay now</button>
+    <ng-template #guestPay>
+      <a routerLink="/sign-in" [queryParams]="{returnUrl: '/bill-payment'}" class="btn-fresh btn-block"><i class="fa-solid fa-right-to-bracket"></i> Sign in to pay</a>
+      <p class="need">You need an account to pay bills. <a routerLink="/sign-up" [queryParams]="{returnUrl: '/bill-payment'}">Create one</a></p>
+    </ng-template>
     <p class="demo"><i class="fa-solid fa-circle-info"></i> Demo only - no real payment is made.</p>
   </form>
 </section>

@@ -46,9 +46,15 @@
         <div class="total"><dt>Total</dt><dd>Rs. {{total | number:'1.2-2'}}</dd></div>
       </dl>
 
-      <button type="button" class="btn-fresh btn-block" data-bs-toggle="modal" data-bs-target="#checkoutModal" (click)="openCheckout()">
+      <button *ngIf="auth.isLogged$ | async; else guestCheckout" type="button" class="btn-fresh btn-block" data-bs-toggle="modal" data-bs-target="#checkoutModal" (click)="openCheckout()">
         <i class="fa-solid fa-lock"></i> Checkout
       </button>
+      <ng-template #guestCheckout>
+        <a routerLink="/sign-in" [queryParams]="{returnUrl: '/myShopping-cart'}" class="btn-fresh btn-block">
+          <i class="fa-solid fa-right-to-bracket"></i> Sign in to checkout
+        </a>
+        <p class="need">Your cart is saved. Sign in or <a routerLink="/sign-up" [queryParams]="{returnUrl: '/myShopping-cart'}">create an account</a> to pay.</p>
+      </ng-template>
       <a routerLink="/all-products" class="btn-ghost btn-block cont">Continue shopping</a>
     </aside>
   </div>

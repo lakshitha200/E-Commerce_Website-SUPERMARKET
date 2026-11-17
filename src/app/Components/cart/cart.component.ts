@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { CartService } from '../../Services/Cart.service';
 import { ProductService } from '../../Services/Product.service';
 import { NotificationService } from '../../Services/Notification.service';
+import { AuthService } from '../../Services/Auth.service';
 
 interface CartItem { product: any; qty: number; }
 
@@ -19,7 +20,7 @@ const COUPONS: Record<string, number> = { FRESH10: 10, WELCOME5: 5 };
 export class CartComponent implements OnInit, OnDestroy {
 
   constructor(private cartService:CartService, private productService:ProductService,
-              private notifications:NotificationService){}
+              private notifications:NotificationService, public auth:AuthService){}
 
   items: CartItem[] = [];
   couponPct = 0;
@@ -80,6 +81,10 @@ export class CartComponent implements OnInit, OnDestroy {
 
   pay(){
     if(this.paying || !this.items.length){ return; }
+    if(!this.auth.isAuthenticated()){
+      this.notifications.show('Please sign in to complete your payment.', 'alert-danger');
+      return;
+    }
     this.paying = true;
     // Demo only: there is no payment backend.
     setTimeout(() => {

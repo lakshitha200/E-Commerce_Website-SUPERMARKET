@@ -17,7 +17,7 @@
 .mobile-search { display: none; padding-bottom: 10px; }
 
 .links { display: flex; gap: 4px; margin-left: auto; }
-.links a { padding: 8px 14px; border-radius: 999px; font-weight: 500; font-size: .94rem; color: #3b5246; transition: background .2s, color .2s; }
+.links a { white-space: nowrap; padding: 8px 14px; border-radius: 999px; font-weight: 500; font-size: .94rem; color: #3b5246; transition: background .2s, color .2s; }
 .links a:hover { background: var(--green-50); color: var(--green-700); }
 .links a.active { background: var(--green-100); color: var(--green-700); font-weight: 600; }
 

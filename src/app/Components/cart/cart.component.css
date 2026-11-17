@@ -65,3 +65,7 @@ dd { margin: 0; font-weight: 600; }
   .qty { grid-area: qty; justify-self: start; }
   .line-total { grid-area: total; }
 }
+
+.need { text-align: center; color: var(--muted); font-size: .82rem; margin: 10px 0 0; }
+.need a { color: var(--green-700); font-weight: 600; }
+.need a:hover { text-decoration: underline; }

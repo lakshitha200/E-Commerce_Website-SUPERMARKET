@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NotificationService } from '../../../Services/Notification.service';
+import { AuthService } from '../../../Services/Auth.service';
 
 @Component({
   selector: 'app-bill-payments',
@@ -7,7 +8,7 @@ import { NotificationService } from '../../../Services/Notification.service';
   styleUrl: './bill-payments.component.css'
 })
 export class BillPaymentsComponent {
-  constructor(private notifications:NotificationService){}
+  constructor(private notifications:NotificationService, public auth:AuthService){}
 
   providers = [
     { key: 'electricity', label: 'Electricity', icon: 'fa-bolt' },
@@ -23,6 +24,10 @@ export class BillPaymentsComponent {
 
   pay(event: Event, form: HTMLFormElement, account: string, amount: string){
     event.preventDefault();
+    if(!this.auth.isAuthenticated()){
+      this.error = 'Please sign in to pay your bills.';
+      return;
+    }
     const value = Number(amount);
     if(!account.trim() || !Number.isFinite(value) || value <= 0){
       this.error = 'Enter a valid account number and an amount greater than 0.';

@@ -9,3 +9,6 @@
 .link:hover, .alt a:hover { text-decoration: underline; }
 .demo { background: var(--green-50); color: var(--green-700); border-radius: 10px; padding: 10px 12px; font-size: .82rem; margin: 16px 0 0; text-align: center; }
 .alt { text-align: center; color: var(--muted); margin: 16px 0 0; font-size: .9rem; }
+
+.notice { background: var(--amber-soft); color: #7a5300; border-radius: 10px; padding: 10px 14px; font-size: .88rem; font-weight: 500; margin: -8px 0 18px; }
+.notice i { margin-right: 6px; }
