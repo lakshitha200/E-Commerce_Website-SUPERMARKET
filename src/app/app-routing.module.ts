@@ -10,6 +10,7 @@ import { ContactComponent } from './Components/header/contact/contact.component'
 import { BillPaymentsComponent } from './Components/header/bill-payments/bill-payments.component';
 import { ProfileComponent } from './Components/profile/profile.component';
 import { NotificationComponent } from './Components/notification/notification.component';
+import { NotFoundComponent } from './Components/not-found/not-found.component';
 import { CanActivate } from './Services/Auth.guard';
 
 const routes: Routes = [
@@ -25,7 +26,7 @@ const routes: Routes = [
   {path:"myShopping-cart",component:CartComponent,title:'My cart | Freshora'},
   {path:"profile",component:ProfileComponent,canActivate:[CanActivate],title:'My profile | Freshora'},
   {path:"notifications",component:NotificationComponent,title:'Notifications | Freshora'},
-  {path:"**",redirectTo:""}
+  {path:"**",component:NotFoundComponent,title:'Page not found | Freshora'}
 ];
 
 @NgModule({

@@ -1,0 +1,26 @@
+<section class="page mycontainer">
+  <div class="nf">
+    <div class="code" aria-hidden="true">
+      <span>4</span>
+      <span class="zero"><i class="fa-solid fa-basket-shopping"></i></span>
+      <span>4</span>
+    </div>
+
+    <h1>Oops! This aisle is empty</h1>
+    <p>We couldn't find the page you were looking for. It may have moved, or the link might be wrong.</p>
+
+    <div class="actions">
+      <a routerLink="/" class="btn-fresh"><i class="fa-solid fa-house"></i> Back to home</a>
+      <a routerLink="/all-products" class="btn-ghost">Browse products</a>
+    </div>
+
+    <div class="search"><app-search></app-search></div>
+
+    <div class="cats">
+      <span>Popular aisles:</span>
+      <a *ngFor="let c of productService.categories" [routerLink]="['/all-products', c.key]">
+        <i class="fa-solid" [ngClass]="c.icon"></i> {{c.label}}
+      </a>
+    </div>
+  </div>
+</section>

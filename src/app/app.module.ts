@@ -18,6 +18,7 @@ import { SignupComponent } from './Components/header/signup/signup.component';
 import { ContactComponent } from './Components/header/contact/contact.component';
 import { BillPaymentsComponent } from './Components/header/bill-payments/bill-payments.component';
 import { ProductCardComponent } from './Components/product-card/product-card.component';
+import { NotFoundComponent } from './Components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { ProductCardComponent } from './Components/product-card/product-card.com
     SignupComponent,
     ContactComponent,
     BillPaymentsComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
